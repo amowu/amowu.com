@@ -51,4 +51,4 @@ Push change to your GitHub `gh-pages` branch:
 git push origin gh-pages
 ```
 
-Congratulations! now you can visit page on [http://<YOUR_USER_NAME>.github.io/resume/](http://<YOUR_USER_NAME>.github.io/resume/)
+Congratulations! now you can visit page on [http://YOUR_USER_NAME.github.io/resume/](http://YOUR_USER_NAME.github.io/resume/)
