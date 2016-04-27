@@ -20,7 +20,7 @@
     "url": "https://github.com/amowu/resume/issues"
   },
   "homepage": "https://github.com/amowu/resume",
-  "devDependencies": {
+  "dependencies": {
     "resume-cli": "^0.4.11"
   },
   "private": true
