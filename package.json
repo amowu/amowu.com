@@ -1,0 +1,27 @@
+{
+  "name": "resume",
+  "version": "0.1.0",
+  "description": "Amo Wu's resume",
+  "scripts": {
+    "test": "resume test",
+    "start": "resume serve -t Elegant",
+    "build": "echo 'index' | resume export -f html -t Elegant"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amowu/resume.git"
+  },
+  "keywords": [
+    "resume"
+  ],
+  "author": "Amo Wu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amowu/resume/issues"
+  },
+  "homepage": "https://github.com/amowu/resume",
+  "devDependencies": {
+    "resume-cli": "^0.4.11"
+  },
+  "private": true
+}
