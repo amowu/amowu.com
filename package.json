@@ -1,7 +1,7 @@
 {
   "name": "resume",
   "version": "0.1.0",
-  "description": "Amo Wu's resume",
+  "description": "A personal resume that generate by JSON Resume",
   "scripts": {
     "test": "resume test",
     "start": "resume serve -t Elegant",
