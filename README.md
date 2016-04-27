@@ -1,9 +1,9 @@
+[![CircleCI](https://img.shields.io/circleci/project/amowu/resume.svg?style=flat-square)](https://circleci.com/gh/amowu/resume)
+[![David](https://img.shields.io/david/amowu/resume.svg?style=flat-square)](https://david-dm.org/amowu/resume)
+
 # Resume
 
 A personal resume that generate by [JSON Resume](https://jsonresume.org/getting-started/).
-
-[![CircleCI](https://img.shields.io/circleci/project/amowu/resume.svg?style=flat-square)](https://circleci.com/gh/amowu/resume)
-[![David](https://img.shields.io/david/amowu/resume.svg?style=flat-square)](https://david-dm.org/amowu/resume)
 
 ## Run Locally
 
