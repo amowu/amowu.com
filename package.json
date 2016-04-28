@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/amowu/resume",
   "dependencies": {
-    "resume-cli": "^0.4.11"
+    "resume-cli": "^0.4.13"
   },
   "private": true
 }
