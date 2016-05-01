@@ -39,6 +39,11 @@
         "network": "Behance",
         "username": "amo_wu",
         "url": "https://www.behance.net/amo_wu"
+      },
+      {
+        "network": "StackOverflow",
+        "username": "amo-wu",
+        "url": "http://stackoverflow.com/users/754377/amo-wu"
       }
     ]
   },
