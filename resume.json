@@ -83,12 +83,73 @@
   "publications": [],
   "skills": [
     {
-      "name": "Web Development",
+      "name": "Front-End Web Development",
       "level": "Advanced",
       "keywords": [
         "HTML",
         "CSS",
-        "JavaScript"
+        "JavaScript",
+        "React",
+        "Redux",
+        "Bootstrap",
+        "AngularJS",
+        "jQuery"
+      ]
+    },
+    {
+      "name": "Game Development",
+      "level": "Advanced",
+      "keywords": [
+        "Phaser",
+        "Unity",
+        "C#",
+        "Impact",
+        "Flex",
+        "Flash",
+        "ActionScript",
+        "XNA"
+      ]
+    },
+    {
+      "name": "Back-End Web Development",
+      "level": "Intermediate",
+      "keywords": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "SQLite",
+        "PHP",
+        "MySQL"
+      ]
+    },
+    {
+      "name": "Cloud Computing",
+      "level": "Intermediate",
+      "keywords": [
+        "Firebase",
+        "Google Cloud Platform",
+        "Parse",
+        "Amazon Web Services"
+      ]
+    },
+    {
+      "name": "DevOps",
+      "level": "Intermediate",
+      "keywords": [
+        "Git",
+        "GitHub",
+        "Jenkins",
+        "Terraform",
+        "Docker",
+        "Vagrant"
+      ]
+    },
+    {
+      "name": "Design",
+      "level": "beginner",
+      "keywords": [
+        "Sketch",
+        "PhotoShop"
       ]
     }
   ],
