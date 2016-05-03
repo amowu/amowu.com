@@ -16,9 +16,9 @@
     },
     "profiles": [
       {
-        "network": "Twitter",
-        "username": "amo_wu",
-        "url": "https://twitter.com/amo_wu"
+        "network": "LinkedIn",
+        "username": "amowu",
+        "url": "https://www.linkedin.com/in/amowu"
       },
       {
         "network": "GitHub",
@@ -26,14 +26,14 @@
         "url": "https://github.com/amowu"
       },
       {
-        "network": "LinkedIn",
-        "username": "amowu",
-        "url": "https://www.linkedin.com/in/amowu"
-      },
-      {
         "network": "Blogger",
         "username": "amowu",
         "url": "http://blog.amowu.com"
+      },
+      {
+        "network": "Twitter",
+        "username": "amo_wu",
+        "url": "https://twitter.com/amo_wu"
       },
       {
         "network": "Behance",
