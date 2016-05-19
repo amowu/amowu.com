@@ -4,13 +4,13 @@
     .ui.segment
       .ui.massive.red.ribbon.label
         i.user.icon
-        | 關於我
+        | 關於我 ABOUT
       h3.ui.header 簡介
       p 小時候夢想成為一位創作藝術家，因為憧憬製作遊戲而一頭栽進程式設計的世界，一路從高職到大學畢業都是攻讀資訊工程學科系，退伍之後順利進入遊戲公司，累積<mark>三年以上 Web & Game 相關工作經驗</mark>，<mark>熟悉 Flash、HTML5 等 RIA 相關技術</mark>，目前<mark>專注於 Front-End Web Development</mark>，並持續關注 Serverless Cloud Computing 與 DevOps 相關議題。
       //- WORK EXPERIENCE
       .ui.massive.blue.ribbon.label
         i.suitcase.icon
-        | 工作經歷
+        | 工作經歷 WORK EXPERIENCE
       //- Gamania
       div
       a(href='http://corp.gamania.com/', target='_blank')
@@ -173,7 +173,7 @@
             a.header(href='http://blog.amowu.com/2015/01/hacker-guide-to-setting-up-your-mac.html', target='_blank') 如何優雅地在 Mac 上使用 dotfiles?
       .ui.massive.orange.ribbon.label
         i.keyboard.icon
-        | 技能
+        | 技能 SKILLS
       .ui.very.relaxed.middle.aligned.list
         .item
           i.folder.icon
@@ -188,10 +188,18 @@
                 i.file.icon
                 .content
                   .header CSS
+                  .list
+                    .item
+                      .content
+                        .description Bootstrap, Semantic UI, Material Design UI, ...
               .item
                 i.file.icon
                 .content
                   .header JavaScript
+                  .list
+                    .item
+                      .content
+                        .description Node.js, ECMAScript2015, AngularJS, React & Redux, Vue.js & Vuex, ...
         .item
           i.folder.icon
           .content
@@ -201,6 +209,10 @@
                 i.file.icon
                 .content
                   .header Flash
+                  .list
+                    .item
+                      .content
+                        .description Flex, ActionScript 3.0, ...
               .item
                 i.file.icon
                 .content
@@ -209,6 +221,10 @@
                 i.file.icon
                 .content
                   .header HTML5
+                  .list
+                    .item
+                      .content
+                        .description ImpactJS, Phaser, ...
         .item
           i.folder.icon
           .content
@@ -217,11 +233,28 @@
               .item
                 i.file.icon
                 .content
-                  .header XaaS: Amazon Web Services, Google Cloud Platform‎, Heroku.
+                  .header XaaS
+                  .list
+                    .item
+                      .content
+                        .description Amazon Web Services, Google Cloud Platform‎, ...
+                    .item
+                      .content
+                        .description Heroku, Parse, Firebase, ...
               .item
                 i.file.icon
                 .content
-                  .header Back-End: RESTful APIs, Relational & NoSQL Database.
+                  .header Back-End Development
+                  .list
+                    .item
+                      .content
+                        .description RESTful APIs
+                    .item
+                      .content
+                        .description Relational & NoSQL Database
+                    .item
+                      .content
+                        .description Serverless Microservice
         .item
           i.folder.icon
           .content
@@ -230,18 +263,41 @@
               .item
                 i.file.icon
                 .content
-                  .header Continuous Integration & Continuous Delivery.
+                  .header Continuous Integration & Continuous Delivery
+                  .list
+                    .item
+                      .content
+                        .description Jenkins, CircleCI, ...
               .item
                 i.file.icon
                 .content
-                  .header Infrastructure as Code: Docker, Vagrant, Terraform.
+                  .header Infrastructure as Code
+                  .list
+                    .item
+                      .content
+                        .description Docker, Vagrant, Terraform, ...
               .item
                 i.file.icon
                 .content
-                  .header Git & GitHub workflow.
+                  .header Git & GitHub workflow
+                  .list
+                    .item
+                      .content
+                        .description Git Flow, Pull Requst, Code Review, Issue Tracking, ...
+              .item
+                i.file.icon
+                .content
+                  .header Code Quality
+                  .list
+                    .item
+                      .content
+                        .description Coding Style, Unit & E2E Testing, Code Coverage, ...
+                    .item
+                      .content
+                        .description Yeoman, Grunt, Gulp, Webpack, Babel, ...
       .ui.massive.green.ribbon.label
         i.student.icon
-        | 學歷
+        | 學歷 EDUCATION
       div
       a(href='http://www.ntut.edu.tw/', target='_blank')
         img.ui.right.floated.image(src='https://media.licdn.com/mpr/mpr/shrink_100_100/p/6/005/0a5/02d/015e2ec.png')

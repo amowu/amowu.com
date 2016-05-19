@@ -24,17 +24,7 @@
   import store from '../core/store'
 
   export default {
-    store,
-    ready () {
-      this.$http({
-        url: 'https://raw.githubusercontent.com/amowu/resume/gh-pages/resume.json',
-        method: 'GET'
-      }).then(response => {
-        console.log(response)
-      }, response => {
-        console.log(response)
-      })
-    }
+    store
   }
 </script>
 
@@ -54,22 +44,22 @@
           .ui.list
             .item
               i.phone.icon
-              .content Phone
+              .content
             .item
               i.mail.icon
               .content
                 a(href='mailto:amo260@gmail.com') amo260@gmail.com
             .item
               i.comment.icon
-              .content IM
+              .content
             .item
               i.linkify.icon
               .content
-                a(href='http://amowu.com') amowu.com
+                a(href='http://amowu.com') http://amowu.com
             .item
               i.rss.icon
               .content
-                a(href='http://blog.amowu.com') blog.amowu.com
+                a(href='http://blog.amowu.com') http://blog.amowu.com
             .item
               i.marker.icon
               .content New Taipei City, Taiwan
