@@ -1,20 +1,17 @@
 {
-  "name": "resume",
-  "version": "0.1.0",
-  "description": "A personal resume that generate by JSON Resume",
+  "name": "amowu.com",
+  "version": "1.0.0",
+  "description": "My personal website and resume",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amowu/resume.git"
+    "url": "git+https://github.com/amowu/amowu.com.git"
   },
-  "keywords": [
-    "resume"
-  ],
   "author": "Amo Wu <amo260@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/amowu/resume/issues"
+    "url": "https://github.com/amowu/amowu.com/issues"
   },
-  "homepage": "https://github.com/amowu/resume",
+  "homepage": "https://github.com/amowu/amowu.com",
   "scripts": {
     "test": "npm run lint",
     "dev": "node build/dev-server.js",
