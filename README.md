@@ -1,19 +1,19 @@
-[![CircleCI](https://img.shields.io/circleci/project/amowu/resume.svg?style=flat-square)](https://circleci.com/gh/amowu/resume)
-[![David](https://img.shields.io/david/amowu/resume.svg?style=flat-square)](https://david-dm.org/amowu/resume)
+[![CircleCI](https://img.shields.io/circleci/project/amowu/amowu.com.svg?style=flat-square)](https://circleci.com/gh/amowu/amowu.com)
+[![David](https://img.shields.io/david/amowu/amowu.com.svg?style=flat-square)](https://david-dm.org/amowu/amowu.com)
 
-# Resume
+# amowu.com
 
-A personal resume that generate by [JSON Resume](https://jsonresume.org/getting-started/).
+My personal website and resume
 
-## Run Locally
+## Develop Locally
 
-Fork and clone repo:
+Clone repo:
 
 ```sh
-git clone https://github.com/<YOUR_USER_NAME>/resume.git
+git clone https://github.com/amowu/amowu.com.git
 ```
 
-Install `resume-cli` with npm:
+Install with npm:
 
 ```sh
 npm install
@@ -22,33 +22,11 @@ npm install
 Run this project locally from the command line:
 
 ```sh
-npm start
+npm run dev
 ```
 
-Visit the resume page at [http://localhost:4000/](http://localhost:4000/)
-
-## Development
-
-Edit your [Schema](https://jsonresume.org/schema/) in resume.json
+Visit the page at [http://localhost:8080/](http://localhost:8080/)
 
 ## Deploying
 
-Before deploy, run test command for schema validation:
-
-```sh
-npm test
-```
-
-Export locally to index.html:
-
-```sh
-npm run build
-```
-
-Push change to your GitHub `gh-pages` branch:
-
-```sh
-git push origin gh-pages
-```
-
-Congratulations! now you can visit page on [http://YOUR_USER_NAME.github.io/resume/](http://YOUR_USER_NAME.github.io/resume/)
+Just push to master branch, and CircleCI will be run testing and deploy to AWS S3 static website host.
