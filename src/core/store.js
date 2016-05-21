@@ -1,3 +1,9 @@
 import { Vuex } from '../core'
 
-export default new Vuex.Store()
+import resume from '../mutations/resume'
+
+export default new Vuex.Store({
+  modules: {
+    resume
+  }
+})
