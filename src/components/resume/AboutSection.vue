@@ -1,7 +1,6 @@
-<style scoped>
-  #about > p {
-    margin-bottom: 1em;
-  }
+<style lang="stylus" scoped>
+  #about > p
+    margin-bottom 1em
 </style>
 
 <script>

@@ -1,16 +1,13 @@
-<style lang='scss' scoped>
-  @media only screen and (max-width: 767px) {
-    .ui.container {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
+<style lang="stylus" scoped>
+  @media only screen and (max-width: 767px)
+    .ui.container
+      margin-left 0 !important
+      margin-right 0 !important
 
-    .ui.segment {
-      border-radius: 0;
-      border-left: 0;
-      border-right: 0;
-    }
-  }
+    .ui.segment
+      border-radius 0
+      border-left 0
+      border-right 0
 </style>
 
 <script>

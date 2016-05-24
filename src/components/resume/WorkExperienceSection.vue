@@ -1,13 +1,10 @@
-<style scoped>
-  #work {
-    padding-bottom: 1em;
-  }
+<style lang="stylus" scoped>
+  #work
+    padding-bottom 1em
 
-  @media only screen and (max-width: 767px) {
-    .logo {
-      display: none;
-    }
-  }
+  @media only screen and (max-width: 767px)
+    .logo
+      display none
 </style>
 
 <script>
