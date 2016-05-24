@@ -55,7 +55,7 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   #app.ui.two.column.stackable.grid
     #profile-container.four.wide.column
       profile-card#profile(

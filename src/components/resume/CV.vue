@@ -38,7 +38,7 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   .ui.container
     .ui.segment
       about-section(
@@ -48,6 +48,8 @@
         :projects='projects',
         :writing='writing',
         :speaking='speaking')
-      skills-section(:skills='skills')
-      education-section(:educations='educations')
+      skills-section(
+        :skills='skills')
+      education-section(
+        :educations='educations')
 </template>

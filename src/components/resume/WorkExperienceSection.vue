@@ -21,7 +21,7 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   #work
     .ui.massive.blue.ribbon.label
       i.suitcase.icon

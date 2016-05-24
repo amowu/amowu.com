@@ -6,7 +6,6 @@
   }
 </script>
 
-<template lang='jade'>
   .ui.massive.orange.ribbon.label
     i.keyboard.icon
     | 技能
@@ -28,4 +27,5 @@
                     .item(v-for='highlight in keyword.highlights')
                       .content
                         .description(v-text='highlight')
+<template lang="jade">
 </template>

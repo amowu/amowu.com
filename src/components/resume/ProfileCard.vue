@@ -43,7 +43,7 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   .ui.card
     .image(v-if='picture')
       img(:src="picture + '?s=350'")

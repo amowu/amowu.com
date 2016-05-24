@@ -14,7 +14,7 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   div
     .ui.massive.green.ribbon.label
       i.student.icon

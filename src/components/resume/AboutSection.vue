@@ -4,7 +4,6 @@
   }
 </style>
 
-<template lang='jade'>
 <script>
   export default {
     props: [
@@ -13,6 +12,7 @@
   }
 </script>
 
+<template lang="jade">
   #about
     .ui.massive.red.ribbon.label
       i.user.icon
