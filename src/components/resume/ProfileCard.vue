@@ -1,23 +1,17 @@
-<style lang='scss' scoped>
-  .ui.right.floated.image {
-    display: none;
-  }
+<style lang="stylus" scoped>
+  .ui.right.floated.image
+    display none
 
-  @media only screen and (max-width: 767px) {
-    .ui.card {
-      & > .image {
-        display: none;
-      }
+  @media only screen and (max-width: 767px)
+    .ui.card
+      & > .image
+        display none
 
-      & > .content:nth-of-type(2) {
-        border-top: 0;
-      }
-    }
+      & > .content:nth-of-type(2)
+        border-top 0
 
-    .ui.right.floated.image {
-      display: inline-block;
-    }
-  }
+    .ui.right.floated.image
+      display inline-block
 </style>
 
 <script>
@@ -30,7 +24,7 @@
       'phone',
       'website',
       'blog',
-      'summary',
+      'brief',
       'location',
       'profiles',
       'languages'
@@ -43,7 +37,7 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   .ui.card
     .image(v-if='picture')
       img(:src="picture + '?s=350'")
@@ -51,7 +45,7 @@
       img.circular.right.floated.mini.ui.image(:src="picture + '?s=350'")
       .header(v-text='name')
       .meta(v-if='label', v-text='label')
-      .description(v-if='summary', v-text='summary')
+      .description(v-if='brief', v-text='brief')
       .ui.list
         .item(v-if='phone')
           i.phone.icon

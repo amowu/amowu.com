@@ -6,7 +6,7 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   div
     router-view
 </template>

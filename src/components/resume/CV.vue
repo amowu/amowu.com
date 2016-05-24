@@ -1,16 +1,13 @@
-<style lang='scss' scoped>
-  @media only screen and (max-width: 767px) {
-    .ui.container {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
+<style lang="stylus" scoped>
+  @media only screen and (max-width: 767px)
+    .ui.container
+      margin-left 0 !important
+      margin-right 0 !important
 
-    .ui.segment {
-      border-radius: 0;
-      border-left: 0;
-      border-right: 0;
-    }
-  }
+    .ui.segment
+      border-radius 0
+      border-left 0
+      border-right 0
 </style>
 
 <script>
@@ -21,6 +18,7 @@
 
   export default {
     props: [
+      'summary',
       'works',
       'projects',
       'writing',
@@ -37,15 +35,18 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   .ui.container
     .ui.segment
-      about-section
+      about-section(
+        :summary='summary')
       work-experience-section(
         :works='works',
         :projects='projects',
         :writing='writing',
         :speaking='speaking')
-      skills-section(:skills='skills')
-      education-section(:educations='educations')
+      skills-section(
+        :skills='skills')
+      education-section(
+        :educations='educations')
 </template>

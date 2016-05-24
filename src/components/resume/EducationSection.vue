@@ -1,9 +1,7 @@
-<style scoped>
-  @media only screen and (max-width: 767px) {
-    .logo {
-      display: none;
-    }
-  }
+<style lang="stylus" scoped>
+  @media only screen and (max-width: 767px)
+    .logo
+      display none
 </style>
 
 <script>
@@ -14,7 +12,7 @@
   }
 </script>
 
-<template lang='jade'>
+<template lang="jade">
   div
     .ui.massive.green.ribbon.label
       i.student.icon
