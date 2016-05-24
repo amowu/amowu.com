@@ -22,11 +22,11 @@ const state = {
       'network': 'Twitter',
       'url': 'https://twitter.com/amo_wu'
     }, {
-      'network': 'Behance',
-      'url': 'https://www.behance.net/amo_wu'
-    }, {
       'network': 'SlideShare',
       'url': 'http://www.slideshare.net/AMO26'
+    }, {
+      'network': 'Behance',
+      'url': 'https://www.behance.net/amo_wu'
     }]
   },
   'works': [{
