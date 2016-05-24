@@ -66,12 +66,13 @@
         :phone='resume.basics.phone',
         :website='resume.basics.website',
         :blog='resume.basics.blog',
-        :summary='resume.basics.summary',
+        :brief='resume.basics.brief',
         :location='resume.basics.location',
         :profiles='resume.basics.profiles',
         :languages='resume.languages')
     #component-container.twelve.wide.column
       cv(
+        :summary='resume.basics.summary',
         :works='resume.works',
         :projects='resume.projects',
         :writing='resume.writing',

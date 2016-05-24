@@ -21,6 +21,7 @@
 
   export default {
     props: [
+      'summary',
       'works',
       'projects',
       'writing',
@@ -40,7 +41,8 @@
 <template lang='jade'>
   .ui.container
     .ui.segment
-      about-section
+      about-section(
+        :summary='summary')
       work-experience-section(
         :works='works',
         :projects='projects',

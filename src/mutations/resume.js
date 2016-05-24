@@ -7,7 +7,8 @@ const state = {
     'phone': '',
     'website': 'http://amowu.com',
     'blog': 'http://blog.amowu.com',
-    'summary': '台灣原生種程序猿 F2E formosanus。待過 4 年遊戲圈的碼農，曾經參與開發 Web MMO RPG（8000 PCU）。目前為專注 Internet 技術的前端攻城獅。',
+    'brief': '台灣原生種程序猿 F2E formosanus。待過 4 年遊戲圈的碼農，曾經參與開發 Web MMO RPG（8000 PCU）。目前為專注 Internet 技術的前端攻城獅。',
+    'summary': '小時候夢想成為一位創作藝術家，因為憧憬製作遊戲而一頭栽進程式設計的世界，一路從高職到大學畢業都是攻讀資訊工程學科系，退伍之後順利進入遊戲公司，累積<mark>三年以上 Web & Game 相關工作經驗</mark>，<mark>熟悉 Flash、HTML5 等 RIA 相關技術</mark>，目前<mark>專注於 Front-End Web Development</mark>，並持續關注 Serverless Cloud Computing 與 DevOps 相關議題。',
     'location': {
       'city': 'New Taipei City',
       'countryCode': 'TW'
