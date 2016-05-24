@@ -1,4 +1,8 @@
 <style lang='scss' scoped>
+  .ui.right.floated.image {
+    display: none;
+  }
+
   @media only screen and (max-width: 767px) {
     .ui.card {
       & > .image {
@@ -13,10 +17,6 @@
     .ui.right.floated.image {
       display: inline-block;
     }
-  }
-
-  .ui.right.floated.image {
-    display: none;
   }
 </style>
 
