@@ -1,18 +1,22 @@
 <style lang='scss' scoped>
-  .ui.right.floated.image {
-    display: none;
-  }
-
   @media only screen and (max-width: 767px) {
     .ui.card {
       & > .image {
         display: none;
+      }
+
+      & > .content:nth-of-type(2) {
+        border-top: 0;
       }
     }
 
     .ui.right.floated.image {
       display: inline-block;
     }
+  }
+
+  .ui.right.floated.image {
+    display: none;
   }
 </style>
 

@@ -1,22 +1,25 @@
 <style lang='scss' scoped>
   @import '~semantic-ui/dist/semantic.css';
 
+  @media only screen and (max-width: 767px) {
+    .ui.stackable.grid > .wide.column {
+      .ui.card {
+        width: 100% !important;
+        border-radius: 0;
+      }
+    }
+
+    #component-container {
+      padding-top: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
   @media only screen and (min-width: 1200px) {
     #component-container {
       & .ui.container {
         margin-left: 0 !important;
-      }
-    }
-  }
-
-  @media only screen and (max-width: 767px) {
-    .ui.stackable.grid > .wide.column {
-      padding: 0 !important;
-
-      .ui.card {
-        width: 100% !important;
-        min-height: 350px;
-        border-radius: 0;
       }
     }
   }
