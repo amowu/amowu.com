@@ -1,6 +1,19 @@
 <style lang='scss' scoped>
   @import '~semantic-ui/dist/semantic.css';
 
+  #app {
+    margin: 0;
+    background-color: #f3f4f5;
+  }
+
+  #profile-container {
+    padding-right: 0;
+  }
+
+  #profile {
+    margin-left: auto;
+  }
+
   @media only screen and (max-width: 767px) {
     .ui.stackable.grid > .wide.column {
       .ui.card {
@@ -22,19 +35,6 @@
         margin-left: 0 !important;
       }
     }
-  }
-
-  #app {
-    margin: 0;
-    background-color: #f3f4f5;
-  }
-
-  #profile-container {
-    padding-right: 0;
-  }
-
-  #profile {
-    margin-left: auto;
   }
 </style>
 
