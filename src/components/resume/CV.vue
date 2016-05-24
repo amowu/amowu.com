@@ -1,0 +1,51 @@
+<style lang='scss' scoped>
+  @media only screen and (max-width: 767px) {
+    .ui.container {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+
+    .ui.segment {
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+</style>
+
+<script>
+  import AboutSection from './AboutSection'
+  import WorkExperienceSection from './WorkExperienceSection'
+  import SkillsSection from './SkillsSection'
+  import EducationSection from './EducationSection'
+
+  export default {
+    props: [
+      'works',
+      'projects',
+      'writing',
+      'speaking',
+      'skills',
+      'educations'
+    ],
+    components: {
+      AboutSection,
+      WorkExperienceSection,
+      SkillsSection,
+      EducationSection
+    }
+  }
+</script>
+
+<template lang='jade'>
+  .ui.container
+    .ui.segment
+      about-section
+      work-experience-section(
+        :works='works',
+        :projects='projects',
+        :writing='writing',
+        :speaking='speaking')
+      skills-section(:skills='skills')
+      education-section(:educations='educations')
+</template>

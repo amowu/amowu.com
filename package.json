@@ -1,6 +1,6 @@
 {
   "name": "amowu.com",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "My personal website and resume",
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
+    "moment": "^2.13.0",
     "semantic-ui": "amowu/Semantic-UI",
     "vue": "^1.0.21",
     "vue-resource": "^0.7.0",
