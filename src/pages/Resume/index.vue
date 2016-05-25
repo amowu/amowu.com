@@ -1,7 +1,7 @@
 <style lang="stylus" scoped>
   @import '~semantic-ui/dist/semantic.css'
 
-  #app
+  #resume
     margin 0
     background-color #f3f4f5
   #profile-container
@@ -43,7 +43,7 @@
 </script>
 
 <template lang="jade">
-  #app.ui.two.column.stackable.grid
+  #resume.ui.two.column.stackable.grid
     #profile-container.four.wide.column
       profile-card#profile(
         :name='resume.basics.name',
