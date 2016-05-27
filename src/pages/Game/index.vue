@@ -7,7 +7,11 @@
 
   export default {
     ready () {
-      new Game(480, 240, document.getElementById('game'))// eslint-disable-line
+      const TILE_SIZE = 16
+      const SCALE_RATIO = 3
+      const width = Math.floor((window.innerWidth / (TILE_SIZE * SCALE_RATIO)) * TILE_SIZE)
+      const height = Math.floor((window.innerHeight / (TILE_SIZE * SCALE_RATIO)) * TILE_SIZE)
+      new Game(width, height, document.getElementById('game'))// eslint-disable-line
     }
   }
 </script>

@@ -52,7 +52,10 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'file',
+        query: {
+          name: utils.assetsPath('json/[name].[hash:7].[ext]')
+        }
       },
       {
         test: /\.html$/,

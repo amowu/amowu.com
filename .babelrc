@@ -1,5 +1,5 @@
 {
   "presets": ["es2015", "stage-2"],
-  "plugins": ["transform-flow-strip-types", "transform-runtime"],
+  "plugins": ["transform-flow-strip-types", "transform-runtime", "syntax-async-functions"],
   "comments": false
 }
