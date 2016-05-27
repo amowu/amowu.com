@@ -5,13 +5,12 @@ class NPC extends Phaser.Sprite {
     this.anchor.setTo(0.25)
     this.inputEnabled = true
     this.input.priorityID = 2
+
+    this.action = new Phaser.Signal()
   }
 
-  addOnInputDown (onInputDown) {
-    if (typeof onInputDown === 'function') {
-      this.events.onInputDown.add(onInputDown)
-      // TODO: how to remove this listener?
-    }
+  triggerAction (onTriggerAction) {
+    this.action.dispatch(onTriggerAction)
   }
 }
 
