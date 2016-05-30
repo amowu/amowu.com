@@ -60,7 +60,7 @@
       options () {
         const { id } = this
         const { entities } = this.dialogues
-        return id ? entities[id].items : []
+        return id ? entities[id].next.items || [] : []
       },
       /** @return {boolean} Whether to display the options menu */
       showOptions () {
@@ -69,13 +69,29 @@
     },
     methods: {
       next () {
-        const { close, options } = this
-        if (options.length === 0) {
-          close()
+        const { id } = this
+        const { entities } = this.dialogues
+        if (entities[id].next.hasOwnProperty('route')) {
+          this.$router.go({ path: entities[id].next.route })
+          return this.close()
         }
+        if (entities[id].next.hasOwnProperty('dialogue')) return this.setActivedDialogue(entities[id].next.dialogue)
+        if (entities[id].next.hasOwnProperty('items')) return
+
+        this.close()
       },
       close () {
         this.setActivedDialogue('')
+      },
+      doOption (option) {
+        if (option.hasOwnProperty('dialogue')) return this.setActivedDialogue(option.dialogue)
+        if (option.hasOwnProperty('route')) {
+          this.$router.go({ path: option.route })
+          this.close()
+          return
+        }
+
+        this.close()
       }
     },
     watch: {
@@ -117,5 +133,5 @@
           a.item(
             v-for='option in options'
             v-text='option.text'
-            @click='setActivedDialogue(option.dialogue)')
+            @click='doOption(option)')
 </template>
