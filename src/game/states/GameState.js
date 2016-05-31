@@ -23,12 +23,11 @@ class GameState extends Phaser.State {
 
     this._player = new Player(this.game, 12 * 16, 16 * 16, 'player')
     this._createNPC([
-      { 'key': 'coder', 'position': {'x': 9, 'y': 12}, 'frameRate': 6, 'action': { 'dialogue': '10001' } },
-      { 'key': 'octocat', 'position': {'x': 6, 'y': 12}, 'frameRate': 2, 'action': {} },
-      { 'key': 'guardcss3npc', 'position': {'x': 10, 'y': 3}, 'frameRate': 2, 'action': {} },
-      { 'key': 'guardjsnpc', 'position': {'x': 12, 'y': 5}, 'frameRate': 2, 'action': {} },
-      { 'key': 'guardhtml5npc', 'position': {'x': 14, 'y': 3}, 'frameRate': 2, 'action': {} },
-      { 'key': 'desertnpc', 'position': {'x': 30, 'y': 46}, 'frameRate': 2, 'action': {} }
+      { 'key': 'coder', 'position': {'x': 9, 'y': 12}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 6, 'action': { 'dialogue': '10001' } },
+      { 'key': 'octocat', 'position': {'x': 6, 'y': 12}, 'anchor': {'x': 0.25, 'y': 0.375}, 'frameRate': 2, 'action': { 'dialogue': '10004' } },
+      { 'key': 'guardcss3npc', 'position': {'x': 10, 'y': 3}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10015' } },
+      { 'key': 'guardjsnpc', 'position': {'x': 12, 'y': 5}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10012' } },
+      { 'key': 'guardhtml5npc', 'position': {'x': 14, 'y': 3}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10016' } }
     ])
 
     this._map.addOnInputDown((layer, input) => {
@@ -55,6 +54,8 @@ class GameState extends Phaser.State {
   _createNPC (npcs) {
     forEach(npcs, npc => {
       const instance = new NPC(this.game, npc.position.x * 16, npc.position.y * 16, npc.key)
+
+      instance.anchor.setTo(npc.anchor.x, npc.anchor.y)
 
       instance.animations.add('idle_down', [0, 1], npc.frameRate, true)
       instance.animations.play('idle_down')

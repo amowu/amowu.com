@@ -6,18 +6,42 @@
     display flex
     flex-direction column-reverse
     align-items flex-end
-  #d-c-2 > .ui.segment
-    width 100%
-  #d-c-2 > .ui.vertical.menu
-    margin-bottom 1em
   #dialogue-box
+    width 100%
     cursor pointer
+    margin-bottom -12px
+    background-color rgb(64, 64, 64)
+    border-image-source url('../../assets/barsheet.png')
+    border-image-width 12px
+    border-image-slice 12
+    border-image-repeat stretch
+    border-radius 40px
+    font-size 1.28571429rem
+    opacity 0.9
+  #dialogue-menu
+    margin-bottom 1em
+    background-color rgb(64, 64, 64)
+    border-image-source url('../../assets/barsheet.png')
+    border-image-width 12px
+    border-image-slice 12
+    border-image-repeat stretch
+    border-radius 40px
+    opacity 0.9
+  .ui.secondary.inverted.menu a.item
+    margin-left 5px
+    margin-right 5px
   .fullscreen
     position fixed
     top 0
     left 0
     bottom 0
     right 0
+
+  @media only screen and (max-width: 767px)
+    .ui.container
+      width: 100% !important
+    #dialogue-menu
+      width: 100%
 </style>
 
 <script>
@@ -71,6 +95,10 @@
       next () {
         const { id } = this
         const { entities } = this.dialogues
+        if (entities[id].next.hasOwnProperty('url')) {
+          window.open(entities[id].next.url, '_black')
+          return this.close()
+        }
         if (entities[id].next.hasOwnProperty('route')) {
           this.$router.go({ path: entities[id].next.route })
           return this.close()
@@ -90,6 +118,7 @@
           this.close()
           return
         }
+        if (option.hasOwnProperty('url')) window.open(option.url, '_blank')
 
         this.close()
       }
@@ -124,14 +153,15 @@
   div(v-show='text')
     //- TODO: Dialogue.vue
     #d-c-1.fullscreen
-      #dimmer.fullscreen(@click='close')
+      #dimmer.fullscreen(@click='next')
       #d-c-2.ui.container
-        #dialogue-box.ui.segment(@click='next')
+        #dialogue-box.ui.inverted.padded.segment(@click='next')
           //- TODO: Typed.vue
           #theater
-        .ui.vertical.menu(v-show='showOptions')
-          a.item(
-            v-for='option in options'
-            v-text='option.text'
-            @click='doOption(option)')
+        #dialogue-menu.ui.inverted.segment(v-show='showOptions')
+          .ui.vertical.inverted.secondary.large.menu
+            a.item(
+              v-for='option in options'
+              v-text='option.text'
+              @click='doOption(option)')
 </template>
