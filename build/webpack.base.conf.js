@@ -16,9 +16,9 @@ module.exports = {
     extensions: ['', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
-      'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'phaser': path.resolve(__dirname, '../node_modules/phaser/build/custom/phaser-split.js'),
+      'pixi': path.resolve(__dirname, '../node_modules/phaser/build/custom/pixi.js'),
+      'p2': path.resolve(__dirname, '../node_modules/phaser/build/custom/p2.js')
     }
   },
   resolveLoader: {
@@ -52,7 +52,10 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'file',
+        query: {
+          name: utils.assetsPath('json/[name].[hash:7].[ext]')
+        }
       },
       {
         test: /\.html$/,
@@ -73,6 +76,18 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /pixi\.js/,
+        loader: 'expose?PIXI'
+      },
+      {
+        test: /phaser-split\.js$/,
+        loader: 'expose?Phaser'
+      },
+      {
+        test: /p2\.js/,
+        loader: 'expose?p2'
       }
     ]
   },
