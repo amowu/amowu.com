@@ -27,7 +27,10 @@ class GameState extends Phaser.State {
       { 'key': 'octocat', 'position': {'x': 6, 'y': 12}, 'anchor': {'x': 0.25, 'y': 0.375}, 'frameRate': 2, 'action': { 'dialogue': '10004' } },
       { 'key': 'guardcss3npc', 'position': {'x': 10, 'y': 3}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10015' } },
       { 'key': 'guardjsnpc', 'position': {'x': 12, 'y': 5}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10012' } },
-      { 'key': 'guardhtml5npc', 'position': {'x': 14, 'y': 3}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10016' } }
+      { 'key': 'guardhtml5npc', 'position': {'x': 14, 'y': 3}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10016' } },
+      { 'key': 'villageboy', 'position': {'x': 44, 'y': 25}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10021' } },
+      { 'key': 'villagegirl', 'position': {'x': 16, 'y': 22}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10017' } },
+      { 'key': 'desertnpc', 'position': {'x': 30, 'y': 46}, 'anchor': {'x': 0.25, 'y': 0.25}, 'frameRate': 2, 'action': { 'dialogue': '10024' } }
     ])
 
     this._map.addOnInputDown((layer, input) => {
