@@ -9,7 +9,19 @@ const router = new VueRouter({
 router.map({
   '/': {
     component: Resume
+  },
+  '/user/:username': {
+    component: Resume
+  },
+  '/idontwannaseeyourresume': {
+    component: {
+      template: '<div></div>'
+    }
   }
+})
+
+router.redirect({
+  '*': '/user/amowu'
 })
 
 export default router

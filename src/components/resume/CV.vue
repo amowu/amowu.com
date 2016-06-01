@@ -24,7 +24,8 @@
       'writing',
       'speaking',
       'skills',
-      'educations'
+      'educations',
+      'close'
     ],
     components: {
       AboutSection,
@@ -38,6 +39,8 @@
 <template lang="jade">
   .ui.container
     .ui.segment
+      a.ui.right.corner.label(@click='close')
+        i.remove.icon
       about-section(
         :summary='summary')
       work-experience-section(
