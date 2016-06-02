@@ -14,4 +14,4 @@ deployment:
   production:
     branch: master
     commands:
-      - aws s3 sync dist s3://www.amowu.com/ --delete
+      - aws s3 sync dist s3://$BUCKET_NAME --delete
