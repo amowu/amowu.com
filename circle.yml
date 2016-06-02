@@ -6,9 +6,12 @@ dependencies:
   cache_directories:
     - 'node_modules'
 
+test:
+  post:
+    - npm run build
+
 deployment:
   production:
     branch: master
     commands:
-      - npm run build
       - aws s3 sync dist s3://www.amowu.com/ --delete
