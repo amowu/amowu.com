@@ -202,6 +202,9 @@ const state = {
       }, {
         'network': 'SlideShare',
         'url': 'http://www.slideshare.net/AMO26/ss-62068992'
+      }, {
+        'network': 'SlideShare',
+        'url': 'http://www.slideshare.net/AMO26/097-csies017'
       }]
     }, {
       'name': 'Metal Slug 魂斗羅',
