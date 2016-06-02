@@ -132,7 +132,7 @@ const state = {
         'url': 'http://www.slideshare.net/AMO26/gumorning'
       }]
     }, {
-      'name': '其他專案',
+      'name': '其它專案',
       'picture': '',
       'startDate': '',
       'endDate': '',
@@ -221,11 +221,11 @@ const state = {
         'url': 'http://www.slideshare.net/AMO26/ss-62069037'
       }]
     }, {
-      'name': '其他專案',
+      'name': '其它專案',
       'picture': '',
       'startDate': '',
       'endDate': '',
-      'summary': '<p>更多學生時期的作品請參考這份早期的 <a href="https://drive.google.com/open?id=0BxPhtlCrkuIFN2FlZGVmYzEtZDk5Ni00MmZjLTg1ZWUtOWY0ZWE0M2QxODA1" target="_blank"><i class="file pdf outline icon"></i>Resume.pdf</a>。</p>',
+      'summary': '',
       'skills': [
         { 'name': 'C', 'color': '' },
         { 'name': 'C++', 'color': '' },
