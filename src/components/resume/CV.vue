@@ -52,4 +52,5 @@
         :skills='skills')
       education-section(
         :educations='educations')
+    img.ui.right.floated.medium.image(src='http://cdn.amowu.com/sign.png')
 </template>
