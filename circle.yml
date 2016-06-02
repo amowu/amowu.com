@@ -3,6 +3,8 @@ machine:
     version: 4.4.4
 
 dependencies:
+  pre:
+    - aws configure set preview.cloudfront true
   cache_directories:
     - 'node_modules'
 
@@ -15,3 +17,4 @@ deployment:
     branch: master
     commands:
       - aws s3 sync dist s3://$BUCKET_NAME --delete
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths /index.html
