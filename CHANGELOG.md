@@ -1,3 +1,13 @@
+<a name="1.4.1"></a>
+## [1.4.1](https://github.com/amowu/amowu.com/compare/1.4.0...v1.4.1) (2016-06-02)
+
+
+### Bug Fixes
+
+* change twitter card type to large image ([9d1a13e](https://github.com/amowu/amowu.com/commit/9d1a13e))
+
+
+
 <a name="1.4.0"></a>
 # 1.4.0 (2016-06-02)
 
