@@ -1,3 +1,13 @@
+<a name="1.4.2"></a>
+## [1.4.2](https://github.com/amowu/amowu.com/compare/1.4.1...v1.4.2) (2016-06-04)
+
+
+### Bug Fixes
+
+* border-image not work on Chrome v51 ([2cd5fa0](https://github.com/amowu/amowu.com/commit/2cd5fa0)), closes [#21](https://github.com/amowu/amowu.com/issues/21)
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/amowu/amowu.com/compare/1.4.0...v1.4.1) (2016-06-02)
 
