@@ -65,13 +65,13 @@
       window.addEventListener('click', this.backdrop, false)
     },
     beforeDestroy () {
-      window.removeEventListener('clicl', this.backdrop, false)
+      window.removeEventListener('click', this.backdrop, false)
     }
   }
 </script>
 
 <template lang="jade">
-  .modal
+  #resume-modal
     #resume.ui.two.column.stackable.grid
       #profile-container.four.wide.column
         profile-card#profile(
