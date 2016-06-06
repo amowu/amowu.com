@@ -1,4 +1,7 @@
 <style lang="stylus" scoped>
+  .ui.corner.label .icon
+    cursor pointer
+
   @media only screen and (max-width: 767px)
     .ui.container
       margin-left 0 !important
