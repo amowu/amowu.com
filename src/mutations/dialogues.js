@@ -6,7 +6,7 @@ const state = {
   actived: '',
   entities: {
     '10001': {
-      text: '<p>嗨，你好！我是 Amo Wu，一隻喜歡寫程式的台灣原生種程序猿。🙈</p><p>曾經待過 3 年以上遊戲圈的碼農🤓，並參與開發 8000+ PCU 的 Web MMO RPG，擁有豐富的 RIA 經驗。</p><i class="ellipsis horizontal icon"></i><i class="sort descending icon"></i>',
+      text: '<p>嗨，你好！我是 <span style="color: yellow">Amo Wu</span>，一隻喜歡寫程式的台灣原生種程序猿。🙈</p><p>曾經待過 3 年以上遊戲圈的碼農🤓，並參與開發 8000+ PCU 的 Web MMO RPG，擁有豐富的 RIA 經驗。</p><i class="ellipsis horizontal icon"></i><i class="sort descending icon"></i>',
       next: { dialogue: '10002' }
     },
     '10002': {
@@ -146,7 +146,7 @@ const state = {
       next: {}
     },
     '10024': {
-      text: '<p>我們曾是勇於冒險挑戰的海洋民族，如今卻成為只顧小確幸⋯⋯</p><p>越過這片海之後就是更廣大的世界了，希望這塊大陸的人們不要太封閉自己，錯失更多發展的可能性⋯⋯。</p>',
+      text: '<p>我們曾是勇於冒險挑戰的海洋民族⋯⋯</p><p>越過這片大海之後就是更寬廣的世界了⋯⋯。</p>',
       next: {}
     }
   }

@@ -1,10 +1,15 @@
-<a name="1.5.0"></a>
-# [1.5.0](https://github.com/amowu/amowu.com/compare/1.4.1...v1.5.0) (2016-06-04)
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/amowu/amowu.com/compare/1.4.1...v1.6.0) (2016-06-06)
 
 
 ### Bug Fixes
 
-* border-image not work on Chrome v51 ([2cd5fa0](https://github.com/amowu/amowu.com/commit/2cd5fa0)), closes [#21](https://github.com/amowu/amowu.com/issues/21)
+* fix 404 error in HTML5 PushState on S3 static website host ([2cd5fa0](https://github.com/amowu/amowu.com/commit/2cd5fa0)), closes [#21](https://github.com/amowu/amowu.com/issues/21)
+
+
+### Features
+
+* **resume:** improve scroll effect on iOS safari ([5ae0a4a](https://github.com/amowu/amowu.com/commit/5ae0a4a)), closes [#28](https://github.com/amowu/amowu.com/issues/28)
 
 
 
@@ -14,7 +19,7 @@
 
 ### Bug Fixes
 
-* border-image not work on Chrome v51 ([2cd5fa0](https://github.com/amowu/amowu.com/commit/2cd5fa0)), closes [#21](https://github.com/amowu/amowu.com/issues/21)
+* border-image not work on Chrome v51 ([2cd5fa0](https://github.com/amowu/amowu.com/commit/2cd5fa0)), closes [#25](https://github.com/amowu/amowu.com/issues/25)
 
 
 

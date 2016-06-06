@@ -21,7 +21,7 @@ router.map({
 })
 
 router.redirect({
-  '*': '/user/amowu'
+  '*': '/'
 })
 
 export default router

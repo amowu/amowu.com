@@ -1,20 +1,17 @@
 <style lang="stylus" scoped>
   @import '~semantic-ui/dist/semantic.css'
 
-  .modal
-    position fixed
-    z-index 1
-    left 0
+  #resume-modal
+    position absolute
     top 0
+    left 0
     right 0
     bottom 0
-    width 100%
-    height 100%
-    overflow auto
-    background-color rgba(0, 0, 0, 0.25)
+    overflow-y scroll
+    -webkit-overflow-scrolling touch
   #resume
+    position relative
     margin 0
-    /* modal */
   #profile-container
     padding-right 0
   #profile
@@ -65,13 +62,13 @@
       window.addEventListener('click', this.backdrop, false)
     },
     beforeDestroy () {
-      window.removeEventListener('clicl', this.backdrop, false)
+      window.removeEventListener('click', this.backdrop, false)
     }
   }
 </script>
 
 <template lang="jade">
-  .modal
+  #resume-modal
     #resume.ui.two.column.stackable.grid
       #profile-container.four.wide.column
         profile-card#profile(

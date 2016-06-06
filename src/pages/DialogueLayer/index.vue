@@ -12,6 +12,7 @@
     margin-bottom -12px
     background-color rgb(64, 64, 64)
     border-style hidden
+    border-width 1px
     border-image-source url('../../assets/barsheet.png')
     border-image-width 12px
     border-image-slice 12
@@ -23,6 +24,7 @@
     margin-bottom 1em
     background-color rgb(64, 64, 64)
     border-style hidden
+    border-width 1px
     border-image-source url('../../assets/barsheet.png')
     border-image-width 12px
     border-image-slice 12
