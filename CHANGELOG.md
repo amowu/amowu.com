@@ -1,3 +1,16 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/amowu/amowu.com/compare/1.4.1...v1.7.0) (2016-06-07)
+
+
+### Features
+
+* **resume:** improve scroll effect on iOS safari ([5ae0a4a](https://github.com/amowu/amowu.com/commit/5ae0a4a)), closes [#28](https://github.com/amowu/amowu.com/issues/28)
+* add iOS bookmark icon ([774329e](https://github.com/amowu/amowu.com/commit/774329e)), closes [#32](https://github.com/amowu/amowu.com/issues/32)
+* disable horizontal scrolling in mobile browser ([32034d6](https://github.com/amowu/amowu.com/commit/32034d6)), closes [#31](https://github.com/amowu/amowu.com/issues/31)
+* multiple bundle with app.js and vendor.js ([36ebb32](https://github.com/amowu/amowu.com/commit/36ebb32)), closes [#17](https://github.com/amowu/amowu.com/issues/17)
+
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/amowu/amowu.com/compare/1.4.1...v1.6.0) (2016-06-06)
 

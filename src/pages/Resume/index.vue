@@ -7,6 +7,7 @@
     left 0
     right 0
     bottom 0
+    overflow-x hidden
     overflow-y scroll
     -webkit-overflow-scrolling touch
   #resume
