@@ -31,11 +31,11 @@ const state = {
       next: { dialogue: '10006' }
     },
     '10006': {
-      text: '<p>正所謂　我不入地獄，誰入地獄，警惡懲奸，維護世界和平這任務就交給你了，好不好？😋</p>',
+      text: '<p>正所謂　我不入地獄，誰入地獄，警惡懲奸，維護世界和平這任務就交給你了，好不好？</p>',
       next: {
         items: [
           { text: '你是誰？', dialogue: '10007' },
-          { text: '好！', dialogue: '10008' },
+          { text: '好！😋', dialogue: '10008' },
           { text: '我只是來發個 Issue 的', dialogue: '10009' },
           { text: '很明顯我就是那個人，但 GitHub 是啥？', dialogue: '10010' },
           { text: '結束對話', dialogue: '10011' }
