@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 
-import filters from '../filters'
+import filters from '../vue/filters'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)

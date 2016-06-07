@@ -1,5 +1,5 @@
 <script>
-  import store from '../core/store'
+  import store from '../../core/store'
   import DialogueLayer from './DialogueLayer'
   import Game from './Game'
 

@@ -1,6 +1,6 @@
 import {
   SET_ACTIVED_DIALOGUE
-} from '../core/types'
+} from '../const'
 
 const state = {
   actived: '',

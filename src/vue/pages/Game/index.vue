@@ -9,8 +9,8 @@
 </style>
 
 <script>
-  import { setActivedDialogue } from '../../actions/dialogues'
-  import Game from '../../game'
+  import Game from '../../../game'
+  import { setActivedDialogue } from '../../../vuex/actions/dialogues'
 
   export default {
     vuex: {
