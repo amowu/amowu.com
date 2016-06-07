@@ -9,10 +9,6 @@
 </style>
 
 <script>
-  import 'pixi'
-  import 'p2'
-  import 'phaser'
-
   import { setActivedDialogue } from '../../actions/dialogues'
   import Game from '../../game'
 

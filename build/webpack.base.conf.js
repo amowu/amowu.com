@@ -1,11 +1,24 @@
 var path = require('path')
+var webpack = require('webpack')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.js',
+    vendor: [
+      'easystarjs',
+      'lodash',
+      'moment',
+      'phaser',
+      'theaterjs',
+      'vue',
+      'vue-resource',
+      'vue-router',
+      'vuex',
+      'vuex-router-sync'
+    ]
   },
   output: {
     path: config.build.assetsRoot,
@@ -78,19 +91,16 @@ module.exports = {
         }
       },
       {
-        test: /pixi\.js/,
-        loader: 'expose?PIXI'
-      },
-      {
         test: /phaser-split\.js$/,
-        loader: 'expose?Phaser'
-      },
-      {
-        test: /p2\.js/,
-        loader: 'expose?p2'
+        loader: 'imports?p2=p2&PIXI=pixi'
       }
     ]
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      Phaser: 'phaser'
+    })
+  ],
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },
