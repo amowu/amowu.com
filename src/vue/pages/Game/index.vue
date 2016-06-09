@@ -9,7 +9,7 @@
 </style>
 
 <script>
-  import Game from '../../../game'
+  import Game from '../../../phaser-game'
   import { setActivedDialogue } from '../../../vuex/actions/dialogues'
 
   export default {
