@@ -1,7 +1,11 @@
-<style lang="stylus" scoped>
-  @media only screen and (max-width: 767px)
-    .logo
-      display none
+<style lang="less" scoped>
+  @import  (reference) "~semantic-ui-less/themes/default/globals/site.variables";
+
+  @media only screen and (max-width: @largestMobileScreen) {
+    .logo {
+      display: none;
+    }
+  }
 </style>
 
 <script>

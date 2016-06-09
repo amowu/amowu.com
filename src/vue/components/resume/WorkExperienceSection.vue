@@ -1,10 +1,15 @@
-<style lang="stylus" scoped>
-  #work
-    padding-bottom 1em
+<style lang="less" scoped>
+  @import  (reference) "~semantic-ui-less/themes/default/globals/site.variables";
 
-  @media only screen and (max-width: 767px)
-    .logo
-      display none
+  #work {
+    padding-bottom: 1em;
+  }
+
+  @media only screen and (max-width: @largestMobileScreen) {
+    .logo {
+      display: none;
+    }
+  }
 </style>
 
 <script>

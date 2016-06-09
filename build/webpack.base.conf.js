@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var config = require('../config')
 var utils = require('./utils')
+var RewriteImportPlugin = require('less-plugin-rewrite-import')
 var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
@@ -103,6 +104,15 @@ module.exports = {
   ],
   eslint: {
     formatter: require('eslint-friendly-formatter')
+  },
+  lessLoader: {
+    lessPlugins: [
+      new RewriteImportPlugin({
+        paths: {
+          '../../theme.config': path.resolve(__dirname, '../src/semantic-ui/theme.config')
+        }
+      })
+    ]
   },
   vue: {
     loaders: utils.cssLoaders()

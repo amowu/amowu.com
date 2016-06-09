@@ -1,17 +1,23 @@
-<style lang="stylus" scoped>
-  .ui.right.floated.image
-    display none
+<style lang="less" scoped>
+  @import  (reference) "~semantic-ui-less/themes/default/globals/site.variables";
 
-  @media only screen and (max-width: 767px)
-    .ui.card
-      & > .image
-        display none
+  .ui.right.floated.image {
+    display: none;
+  }
 
-      & > .content:nth-of-type(2)
-        border-top 0
-
-    .ui.right.floated.image
-      display inline-block
+  @media only screen and (max-width: @largestMobileScreen) {
+    .ui.card {
+      & > .image {
+        display: none;
+      }
+      & > .content:nth-of-type(2) {
+        border-top: 0;
+      }
+    }
+    .ui.right.floated.image {
+      display: inline-block;
+    }
+  }
 </style>
 
 <script>

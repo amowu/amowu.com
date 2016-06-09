@@ -1,51 +1,61 @@
-<style lang="stylus" scoped>
-  #d-c-1
-    display flex
-    justift-content center
-  #d-c-2
-    display flex
-    flex-direction column-reverse
-    align-items flex-end
-  #dialogue-box
-    width 100%
-    cursor pointer
-    margin-bottom -12px
-    background-color rgb(64, 64, 64)
-    border-style hidden
-    border-width 1px
-    border-image-source url('../../../assets/barsheet.png')
-    border-image-width 12px
-    border-image-slice 12
-    border-image-repeat stretch
-    border-radius 40px
-    font-size 1.28571429rem
-    opacity 0.9
-  #dialogue-menu
-    margin-bottom 1em
-    background-color rgb(64, 64, 64)
-    border-style hidden
-    border-width 1px
-    border-image-source url('../../../assets/barsheet.png')
-    border-image-width 12px
-    border-image-slice 12
-    border-image-repeat stretch
-    border-radius 40px
-    opacity 0.9
-  .ui.secondary.inverted.menu a.item
-    margin-left 5px
-    margin-right 5px
-  .fullscreen
-    position fixed
-    top 0
-    left 0
-    bottom 0
-    right 0
+<style lang="less" scoped>
+  @import  (reference) "~semantic-ui-less/themes/default/globals/site.variables";
 
-  @media only screen and (max-width: 767px)
-    .ui.container
-      width: 100% !important
-    #dialogue-menu
-      width: 100%
+  #d-c-1 {
+    display: flex;
+    justift-content: center;
+  }
+  #d-c-2 {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+  #dialogue-box {
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: -12px;
+    background-color: rgb(64, 64, 64);
+    border-style: hidden;
+    border-width: 1px;
+    border-image-source: url('../../../assets/barsheet.png');
+    border-image-width: 12px;
+    border-image-slice: 12;
+    border-image-repeat: stretch;
+    border-radius: 40px;
+    font-size: 1.28571429rem;
+    opacity: 0.9;
+  }
+  #dialogue-menu {
+    margin-bottom: 1em;
+    background-color: rgb(64, 64, 64);
+    border-style: hidden;
+    border-width: 1px;
+    border-image-source: url('../../../assets/barsheet.png');
+    border-image-width: 12px;
+    border-image-slice: 12;
+    border-image-repeat: stretch;
+    border-radius: 40px;
+    opacity: 0.9;
+  }
+  .ui.secondary.inverted.menu a.item {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  @media only screen and (max-width: @largestMobileScreen) {
+    .ui.container {
+      width: 100% !important;
+    }
+    #dialogue-menu {
+      width: 100%;
+    }
+  }
 </style>
 
 <script>

@@ -1,16 +1,21 @@
-<style lang="stylus" scoped>
-  .ui.corner.label .icon
-    cursor pointer
+<style lang="less" scoped>
+  @import  (reference) "~semantic-ui-less/themes/default/globals/site.variables";
 
-  @media only screen and (max-width: 767px)
-    .ui.container
-      margin-left 0 !important
-      margin-right 0 !important
+  .ui.corner.label .icon {
+    cursor: pointer;
+  }
 
-    .ui.segment
-      border-radius 0
-      border-left 0
-      border-right 0
+  @media only screen and (max-width: @largestMobileScreen) {
+    .ui.container {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    .ui.segment {
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
 </style>
 
 <script>
