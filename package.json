@@ -19,7 +19,8 @@
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s -u -r 1 -p angular"
   },
   "dependencies": {
     "easystarjs": "^0.2.3",
