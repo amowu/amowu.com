@@ -13,14 +13,14 @@
   },
   "homepage": "https://github.com/amowu/amowu.com",
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run test:lint",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "unit": "karma start test/unit/karma.conf.js --single-run",
-    "e2e": "node test/e2e/runner.js",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "changelog": "conventional-changelog -i CHANGELOG.md -s -u -r 1 -p angular"
+    "test:unit": "karma start test/unit/karma.conf.js --single-run",
+    "test:e2e": "node test/e2e/runner.js",
+    "test:lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "test:flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "build:changelog": "conventional-changelog -i CHANGELOG.md -s -u -r 1 -p angular"
   },
   "dependencies": {
     "easystarjs": "^0.2.3",
