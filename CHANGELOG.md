@@ -1,5 +1,15 @@
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/amowu/amowu.com/compare/1.7.0...v1.8.0) (2016-06-11)
+
+
+### Features
+
+* import semantic-ui-less ([78f33d0](https://github.com/amowu/amowu.com/commit/78f33d0)), closes [#13](https://github.com/amowu/amowu.com/issues/13)
+
+
+
 <a name="1.7.0"></a>
-# [1.7.0](https://github.com/amowu/amowu.com/compare/1.4.1...v1.7.0) (2016-06-07)
+# [1.7.0](https://github.com/amowu/amowu.com/compare/1.6.0...v1.7.0) (2016-06-07)
 
 
 ### Features
@@ -12,7 +22,7 @@
 
 
 <a name="1.6.0"></a>
-# [1.6.0](https://github.com/amowu/amowu.com/compare/1.4.1...v1.6.0) (2016-06-06)
+# [1.6.0](https://github.com/amowu/amowu.com/compare/1.4.2...v1.6.0) (2016-06-06)
 
 
 ### Bug Fixes

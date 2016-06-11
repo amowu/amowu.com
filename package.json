@@ -1,6 +1,6 @@
 {
   "name": "amowu.com",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "My personal website and resume",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
     "phaser": "^2.4.8",
-    "semantic-ui": "amowu/Semantic-UI",
+    "semantic-ui-less": "^2.1.8",
     "theaterjs": "^3.0.0",
     "vue": "^1.0.21",
     "vue-resource": "^0.7.0",
@@ -78,6 +78,9 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.24",
     "karma-webpack": "^1.7.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "less-plugin-rewrite-import": "^0.1.1",
     "lolex": "^1.4.0",
     "mocha": "^2.4.5",
     "nightwatch": "^0.8.18",
