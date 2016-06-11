@@ -17,7 +17,7 @@
     background-color: rgb(64, 64, 64);
     border-style: hidden;
     border-width: 1px;
-    border-image-source: url('../../../assets/barsheet.png');
+    border-image-source: url('../../assets/barsheet.png');
     border-image-width: 12px;
     border-image-slice: 12;
     border-image-repeat: stretch;
@@ -30,7 +30,7 @@
     background-color: rgb(64, 64, 64);
     border-style: hidden;
     border-width: 1px;
-    border-image-source: url('../../../assets/barsheet.png');
+    border-image-source: url('../../assets/barsheet.png');
     border-image-width: 12px;
     border-image-slice: 12;
     border-image-repeat: stretch;
@@ -61,7 +61,7 @@
 <script>
   import theaterJS from 'theaterjs'
 
-  import { setActivedDialogue } from '../../../vuex/actions/dialogues'
+  import { setActivedDialogue } from '../../vuex/actions/dialogues'
 
   const theater = theaterJS({
     autoplay: true,

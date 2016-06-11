@@ -23,12 +23,12 @@
 
 <script>
   import store from '../../core/store'
-  import DialogueLayer from './DialogueLayer'
+  import Dialogue from './Dialogue'
   import Game from './Game'
 
   export default {
     components: {
-      DialogueLayer,
+      Dialogue,
       Game
     },
     store
@@ -38,6 +38,6 @@
 <template lang="jade">
   div
     game
-    dialogue-layer
+    dialogue
     router-view
 </template>

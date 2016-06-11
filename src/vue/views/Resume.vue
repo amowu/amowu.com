@@ -44,8 +44,8 @@
 </style>
 
 <script>
-  import CV from '../../../vue/components/resume/CV'
-  import ProfileCard from '../../../vue/components/resume/ProfileCard'
+  import CV from '../components/resume/CV'
+  import ProfileCard from '../components/resume/ProfileCard'
 
   export default {
     components: {
