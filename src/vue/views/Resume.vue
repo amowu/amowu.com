@@ -36,7 +36,7 @@
 
   @media only screen and (min-width: @largestLargeMonitor) {
     #component-container {
-      &.ui.container {
+      & .ui.container {
         margin-left: 0 !important;
       }
     }
