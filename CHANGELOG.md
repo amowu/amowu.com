@@ -1,3 +1,13 @@
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/amowu/amowu.com/compare/1.8.0...1.8.1) (2016-06-13)
+
+
+### Bug Fixes
+
+* resume right align on large monitor ([da60491](https://github.com/amowu/amowu.com/commit/da60491)), closes [#40](https://github.com/amowu/amowu.com/issues/40)
+
+
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/amowu/amowu.com/compare/1.7.0...1.8.0) (2016-06-11)
 
