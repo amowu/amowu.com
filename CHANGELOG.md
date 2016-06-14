@@ -1,3 +1,13 @@
+<a name="1.9.1"></a>
+## [1.9.1](https://github.com/amowu/amowu.com/compare/1.9.0...1.9.1) (2016-06-14)
+
+
+### Bug Fixes
+
+* casesensitive folder name problem on CircleCI ([43b4cee](https://github.com/amowu/amowu.com/commit/43b4cee))
+
+
+
 <a name="1.9.0"></a>
 # [1.9.0](https://github.com/amowu/amowu.com/compare/1.8.1...1.9.0) (2016-06-14)
 
