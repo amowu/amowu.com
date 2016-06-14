@@ -1,3 +1,14 @@
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/amowu/amowu.com/compare/1.8.1...1.9.0) (2016-06-14)
+
+
+### Features
+
+* **dialogue:** refactor Dialogue component ([4fe96a9](https://github.com/amowu/amowu.com/commit/4fe96a9))
+* **resume:** refactor Resume component ([c1ed894](https://github.com/amowu/amowu.com/commit/c1ed894))
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/amowu/amowu.com/compare/1.8.0...1.8.1) (2016-06-13)
 
