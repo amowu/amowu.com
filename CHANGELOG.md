@@ -1,3 +1,14 @@
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/amowu/amowu.com/compare/1.8.1...1.9.0) (2016-06-14)
+
+
+### Features
+
+* **dialogue:** refactor Dialogue component ([4fe96a9](https://github.com/amowu/amowu.com/commit/4fe96a9))
+* **resume:** refactor Resume component ([c1ed894](https://github.com/amowu/amowu.com/commit/c1ed894))
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/amowu/amowu.com/compare/1.8.0...1.8.1) (2016-06-13)
 
@@ -9,7 +20,7 @@
 
 
 <a name="1.8.0"></a>
-# [1.8.0](https://github.com/amowu/amowu.com/compare/1.7.0...v1.8.0) (2016-06-11)
+# [1.8.0](https://github.com/amowu/amowu.com/compare/1.7.0...1.8.0) (2016-06-11)
 
 
 ### Features
@@ -19,7 +30,7 @@
 
 
 <a name="1.7.0"></a>
-# [1.7.0](https://github.com/amowu/amowu.com/compare/1.6.0...v1.7.0) (2016-06-07)
+# [1.7.0](https://github.com/amowu/amowu.com/compare/1.6.0...1.7.0) (2016-06-07)
 
 
 ### Features
@@ -32,7 +43,7 @@
 
 
 <a name="1.6.0"></a>
-# [1.6.0](https://github.com/amowu/amowu.com/compare/1.4.2...v1.6.0) (2016-06-06)
+# [1.6.0](https://github.com/amowu/amowu.com/compare/1.4.2...1.6.0) (2016-06-06)
 
 
 ### Bug Fixes
@@ -47,7 +58,7 @@
 
 
 <a name="1.4.2"></a>
-## [1.4.2](https://github.com/amowu/amowu.com/compare/1.4.1...v1.4.2) (2016-06-04)
+## [1.4.2](https://github.com/amowu/amowu.com/compare/1.4.1...1.4.2) (2016-06-04)
 
 
 ### Bug Fixes
@@ -57,7 +68,7 @@
 
 
 <a name="1.4.1"></a>
-## [1.4.1](https://github.com/amowu/amowu.com/compare/1.4.0...v1.4.1) (2016-06-02)
+## [1.4.1](https://github.com/amowu/amowu.com/compare/1.4.0...1.4.1) (2016-06-02)
 
 
 ### Bug Fixes

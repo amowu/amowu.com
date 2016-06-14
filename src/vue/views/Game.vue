@@ -1,10 +1,10 @@
 <style lang="stylus">
-  #game-layer
+  #game-container
     position fixed
     top 0
-    left 0
     right 0
     bottom 0
+    left 0
     overflow hidden
 </style>
 
@@ -13,19 +13,13 @@
   import { setActivedDialogue } from '../../vuex/actions/dialogues'
 
   export default {
-    vuex: {
-      actions: {
-        setActivedDialogue
-      }
-    },
     ready () {
-      const element = document.getElementById('game')
-
       const TILE_SIZE = 16
       const SCALE_RATIO = 3
       const width = Math.floor((window.innerWidth / (TILE_SIZE * SCALE_RATIO)) * TILE_SIZE)
       const height = Math.floor((window.innerHeight / (TILE_SIZE * SCALE_RATIO)) * TILE_SIZE)
 
+      const element = document.getElementById('game')
       const game = new Game(width, height, element)// eslint-disable-line
 
       game.actions = new Phaser.Signal()
@@ -34,11 +28,16 @@
           this.setActivedDialogue(action.dialogue)
         }
       })
+    },
+    vuex: {
+      actions: {
+        setActivedDialogue
+      }
     }
   }
 </script>
 
 <template lang="jade">
-  #game-layer
+  #game-container
     #game
 </template>

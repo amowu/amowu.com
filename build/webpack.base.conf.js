@@ -10,6 +10,7 @@ module.exports = {
     app: './src/main.js',
     vendor: [
       'easystarjs',
+      'is_js',
       'lodash',
       'moment',
       'phaser',

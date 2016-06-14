@@ -1,6 +1,6 @@
 {
   "name": "amowu.com",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "description": "My personal website and resume",
   "repository": {
     "type": "git",
@@ -13,16 +13,18 @@
   },
   "homepage": "https://github.com/amowu/amowu.com",
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run test:lint",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "unit": "karma start test/unit/karma.conf.js --single-run",
-    "e2e": "node test/e2e/runner.js",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+    "test:unit": "karma start test/unit/karma.conf.js --single-run",
+    "test:e2e": "node test/e2e/runner.js",
+    "test:lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "test:flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "build:changelog": "conventional-changelog -i CHANGELOG.md -s -u -r 1 -p angular"
   },
   "dependencies": {
     "easystarjs": "^0.2.3",
+    "is_js": "^0.8.0",
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
     "phaser": "^2.4.8",
