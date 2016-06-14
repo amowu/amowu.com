@@ -11,9 +11,11 @@ export function to (startDate, endDate) {
 }
 
 const networkObj = {
-  'YouTube': 'youtube play',
+  'blog': 'rss',
+  'email': 'mail',
+  'iOS': 'apple',
   'website': 'linkify',
-  'iOS': 'apple'
+  'YouTube': 'youtube play'
 }
 
 export function icon (network) {
