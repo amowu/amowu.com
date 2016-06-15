@@ -79,11 +79,11 @@
       Dialogue
     },
     vuex: {
-      getters: {
-        dialogues: state => state.dialogues
-      },
       actions: {
         setActivedDialogue
+      },
+      getters: {
+        dialogues: state => state.dialogues
       }
     }
   }

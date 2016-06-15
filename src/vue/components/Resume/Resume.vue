@@ -77,7 +77,7 @@
                 .content
                   | {{{linkify(val)}}}
               //- Location
-              .item
+              .item(v-if='location.city || location.countryCode')
                 i.marker.icon
                 .content(v-text="composedLocation")
               //- Languages

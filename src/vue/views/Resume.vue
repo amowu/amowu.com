@@ -1,4 +1,5 @@
 <script>
+  import { fetchUserResume } from '../../vuex/actions/resume'
   import Resume from '../components/Resume'
 
   export default {
@@ -11,9 +12,15 @@
       Resume
     },
     vuex: {
+      actions: {
+        fetchUserResume
+      },
       getters: {
         resume: state => state.resume
       }
+    },
+    ready () {
+      this.fetchUserResume('amowu')
     }
   }
 </script>
