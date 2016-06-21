@@ -209,7 +209,7 @@
                             i.file.icon
                             .content
                               .header(v-text='keyword.name')
-                              .list(v-if='keyword.highlights.length')
+                              .list(v-if='keyword.highlights && keyword.highlights.length')
                                 .item(v-for='highlight in keyword.highlights')
                                   .content
                                     .description(v-text='highlight')
