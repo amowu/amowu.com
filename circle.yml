@@ -1,6 +1,9 @@
 machine:
   node:
     version: 4.4.5
+  environment:
+    AWS_PROFILE: default
+    AWS_REGION: us-east-1
 
 dependencies:
   pre:
@@ -13,6 +16,10 @@ test:
     - npm run build
 
 deployment:
+  staging:
+    branch: develop
+    commands:
+      - npm run deploy:staging
   production:
     branch: master
     commands:
