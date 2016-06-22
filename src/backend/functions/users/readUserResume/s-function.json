@@ -20,9 +20,7 @@
       "authorizerFunction": false,
       "apiKeyRequired": false,
       "requestParameters": {},
-      "requestTemplates": {
-        "application/json": ""
-      },
+      "requestTemplates": "$${readUserResumeApiRequestTemplate}",
       "responses": {
         "400": {
           "statusCode": "400"
@@ -33,9 +31,7 @@
           "responseModels": {
             "application/json;charset=UTF-8": "Empty"
           },
-          "responseTemplates": {
-            "application/json;charset=UTF-8": ""
-          }
+          "responseTemplates": "$${readUserResumeApiDefaultResponseTemplate}"
         }
       }
     }
