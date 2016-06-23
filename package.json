@@ -21,7 +21,8 @@
     "test:lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "test:flow": "flow; test $? -eq 0 -o $? -eq 2",
     "build:changelog": "conventional-changelog -i CHANGELOG.md -s -u -r 1 -p angular",
-    "deploy:staging": "bash scripts/deploy_staging.sh"
+    "deploy:staging": "bash scripts/deploy_staging.sh",
+    "deploy:production": "bash scripts/deploy_production.sh"
   },
   "dependencies": {
     "easystarjs": "^0.2.3",

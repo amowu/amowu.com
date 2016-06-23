@@ -4,6 +4,8 @@ machine:
   environment:
     AWS_PROFILE: default
     AWS_REGION: us-east-1
+    BUCKET_NAME: www.amowu.com
+    CLOUDFRONT_DIST_ID: E25ZAOHQ3FAMS9
 
 dependencies:
   pre:
@@ -23,5 +25,4 @@ deployment:
   production:
     branch: master
     commands:
-      - aws s3 sync dist s3://$BUCKET_NAME --delete
-      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths /index.html
+      - npm run deploy:production
