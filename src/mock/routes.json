@@ -1,0 +1,4 @@
+{
+  "/v1/": "/",
+  "/users/:id/resume": "/users/:id"
+}
