@@ -44,13 +44,13 @@
           "company":"遊戲橘子",
           "position":"資深程式設計師",
           "website":"http://corp.gamania.com",
-          "picture":"http://cdn.amowu.com/1c35290.png",
+          "picture":"https://cdn.amowu.com/1c35290.png",
           "startDate":"2011-04-11",
           "endDate":"2014-08-29",
           "projects":[
             {
               "name":"末日少女",
-              "picture":"http://cdn.amowu.com/brXTjMsBCR7SjzZfikMWc6uluM0.jpeg",
+              "picture":"https://cdn.amowu.com/brXTjMsBCR7SjzZfikMWc6uluM0.jpeg",
               "startDate":"2012-08",
               "endDate":"2013-07",
               "summary":"<p>《末日少女》是一款大型多人同時連線角色扮演類型的網頁遊戲（Web MMO RPG）。</p><p>我主要<mark>負責 Client 端的遊戲邏輯與 UI 的程式設計</mark>，需要與 Server 端程式人員配合 API 的介接，持續地與企劃、美術、音效人員保持溝通，面向 PM 展示開發進度，可以說是站在最前線的角色，雖然是一份挑戰性高的工作但卻充滿成就感。</p><p>《末日少女》的開發耗時一年以上，途中遇過遊戲設計全部砍掉重練、組織變動、團隊成員大換血等低潮事件，雖然曾抱遲疑，但我沒放棄並與幾位核心成員持續不斷迭代改善，一起度過這些難關，最終成功上市獲得<mark>最大同時在線人數 8000 人</mark>的好成績，並且<mark>賣給日本知名網站</mark>營運至今。</p><p>在這個專案有幸與一群厲害的人工作，技術部份我<mark>學到了如何參與大型多人專案</mark>，例如 data driven MVC 架構與 event driven 單向資料流架構等，對於日後學習 Angular、React & Redux 等 front-end web development 的概念起到很大的幫助，並且也<mark>學習到如何與 Socket 端程式人員合作撰寫即時連線的程式</mark>。</p><p>除了日常進行的任務之外，我也<mark>主動協助企劃人員開發可以提升他們效率的工具</mark>（例：NPC 對話輸入、翻譯字數價格計算等）。</p>",
@@ -113,7 +113,7 @@
             },
             {
               "name":"Gu Morning 早安咕咕",
-              "picture":"http://cdn.amowu.com/EFSTFWfYlPmWEw5ovcrU3JJ8eM4.jpeg",
+              "picture":"https://cdn.amowu.com/EFSTFWfYlPmWEw5ovcrU3JJ8eM4.jpeg",
               "startDate":"2011-05",
               "endDate":"2012-01",
               "summary":"<p>《Gu Morning 早安咕咕》是一款結合《俄羅斯方塊》要素的益智類型手機遊戲。</p><p>這是我在<mark>新人試用期間負責的專案</mark>，因為主管希望可以降低手機遊戲跨平台的開發成本，所以首次嘗試讓我研究 HTML5 的相關技術。</p><p>在 HTML5 還不成熟的初期階段踩了不少坑，也因此讓我在 JavaScript 的技術上獲得很大的成長，並在<mark>三個月的時間內快速交付出原型</mark>，最後經過大家的努力成功讓《Gu Morning 早安咕咕》在 iOS 與 Android 平台上市，並<mark>成為部門第一款擁有收入來源的產品</mark>。</p><p>在 HTML5 game engine 資源還很缺乏的時期，花了很多精力在尋找合適的方案與<mark>學習如何參與開源社群</mark>，最後找到了 <a href='https://github.com/aduros/hydra' target='_blank'>Hydra</a> 這款簡單的 HTML5 game engine，並且在使用 <a href='https://github.com/google/closure-compiler' target='_blank'>Google Closure Compiler</a> 當中學習到組織大量 JavaScript 程式碼的技巧。</p><p>為了跨平台，我們使用了 PhoneGap 將 HTML5 運行在 iOS 與 Android 的 WebView 元件上，因為 DOM render 的效能不如原生應用，之後的專案《Gu Morning 早安咕咕 2》引以為鑒，改採 Canvas render 的方式開發，<mark>效能獲得大幅提升</mark>。</p>",
@@ -227,7 +227,7 @@
           "area":"資訊工程系",
           "studyType":"學士",
           "website":"http://www.ntut.edu.tw",
-          "picture":"http://cdn.amowu.com/015e2ec.png",
+          "picture":"https://cdn.amowu.com/015e2ec.png",
           "startDate":"2005-08-01",
           "endDate":"2009-06-20",
           "highlights":[
@@ -237,7 +237,7 @@
           "projects":[
             {
               "name":"Little March",
-              "picture":"http://cdn.amowu.com/tAjv.jpeg",
+              "picture":"https://cdn.amowu.com/tAjv.jpeg",
               "startDate":"2012-08",
               "endDate":"2013-07",
               "summary":"<p>這是我的大學畢業專題，一款參考《<a href='http://www.lf2.net/' target='_blank'>小朋友齊打交</a>》設計的作品，與原作不同的地方是，《Little March》將 2D 角色結合了 3D 世界場景，並提供最大 4 人即時網路連線對戰功能的格鬥類型遊戲，榮獲實務專題競賽佳作的成績。</p>",
@@ -276,7 +276,7 @@
             },
             {
               "name":"Metal Slug 魂斗羅",
-              "picture":"http://cdn.amowu.com/QIPZJIrPMnx6OZcrI7d6g82xZeE.jpeg",
+              "picture":"https://cdn.amowu.com/QIPZJIrPMnx6OZcrI7d6g82xZeE.jpeg",
               "startDate":"2011-05",
               "endDate":"2012-01",
               "summary":"<p>這是我在「物件導向程式設計實習」課負責的期末專題，一款參考《<a href='https://zh.wikipedia.org/wiki/%E5%90%88%E9%87%91%E5%BC%B9%E5%A4%B4%E7%B3%BB%E5%88%97' target='_blank'>越南大作戰</a>》設計的 2D 橫向捲軸射擊遊戲，並加入許多惡搞元素，獲得教授與同學的好評，這也是我人生第一款開發完整的遊戲作品。</p>",

@@ -256,5 +256,5 @@
                               v-for='skill in project.skills',
                               v-text='skill.name',
                               :class='skill.color')
-          img.ui.right.floated.medium.image(src='http://cdn.amowu.com/sign.png')
+          img.ui.right.floated.medium.image(src='https://cdn.amowu.com/sign.png')
 </template>
