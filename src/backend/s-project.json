@@ -1,5 +1,7 @@
 {
   "name": "amowu",
   "custom": {},
-  "plugins": []
+  "plugins": [
+    "../../node_modules/serverless-cors-plugin"
+  ]
 }
