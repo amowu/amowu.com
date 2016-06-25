@@ -1,6 +1,9 @@
 [![CircleCI](https://img.shields.io/circleci/project/amowu/amowu.com.svg?style=flat-square)](https://circleci.com/gh/amowu/amowu.com)
 [![David](https://img.shields.io/david/amowu/amowu.com.svg?style=flat-square)](https://david-dm.org/amowu/amowu.com)
 
+- [Gitter](https://gitter.im/amowu/amowu.com)
+- [Roadmap](https://overv.io/amowu/amowu.com)
+
 # amowu.com
 
 My personal website and resume
