@@ -1,6 +1,11 @@
 machine:
   node:
-    version: 4.4.4
+    version: 4.4.5
+  environment:
+    AWS_PROFILE: default
+    AWS_REGION: us-east-1
+    BUCKET_NAME: www.amowu.com
+    CLOUDFRONT_DIST_ID: E25ZAOHQ3FAMS9
 
 dependencies:
   pre:
@@ -13,8 +18,11 @@ test:
     - npm run build
 
 deployment:
+  staging:
+    branch: develop
+    commands:
+      - npm run deploy:staging
   production:
     branch: master
     commands:
-      - aws s3 sync dist s3://$BUCKET_NAME --delete
-      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths /index.html
+      - npm run deploy:production

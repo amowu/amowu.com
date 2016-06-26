@@ -1,3 +1,24 @@
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/amowu/amowu.com/compare/1.9.0...1.10.0) (2016-06-26)
+
+
+### Features
+
+* add fetch resume API for component ([6af0cc6](https://github.com/amowu/amowu.com/commit/6af0cc6))
+* **backend:** add staging env CI ([1915521](https://github.com/amowu/amowu.com/commit/1915521))
+* add json-server mock data ([bf58ed7](https://github.com/amowu/amowu.com/commit/bf58ed7))
+* add Segment Analytics.js to replace Google Analytics ([d9a9596](https://github.com/amowu/amowu.com/commit/d9a9596))
+* **backend:** add DynamoDB table 'amowu-users-dev' ([969e56c](https://github.com/amowu/amowu.com/commit/969e56c))
+* **backend:** add production env ([b77be8d](https://github.com/amowu/amowu.com/commit/b77be8d))
+* **backend:** add production env CI ([c158737](https://github.com/amowu/amowu.com/commit/c158737))
+* **backend:** add user resume GET endpoint ([ebcaed3](https://github.com/amowu/amowu.com/commit/ebcaed3))
+* **backend:** create serverless framework ([b9913a3](https://github.com/amowu/amowu.com/commit/b9913a3))
+* **backend:** endpoint support CORS ([53eee63](https://github.com/amowu/amowu.com/commit/53eee63))
+* **frontend:** control frontend endpoint URL by env in config ([eae97a1](https://github.com/amowu/amowu.com/commit/eae97a1))
+* support HTTPS cdn.amowu.com ([a641ad4](https://github.com/amowu/amowu.com/commit/a641ad4))
+
+
+
 <a name="1.9.1"></a>
 ## [1.9.1](https://github.com/amowu/amowu.com/compare/1.9.0...1.9.1) (2016-06-14)
 

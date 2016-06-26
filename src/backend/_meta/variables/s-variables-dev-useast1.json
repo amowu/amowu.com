@@ -1,0 +1,6 @@
+{
+  "region": "us-east-1",
+  "resourcesStackName": "amowu-dev-r",
+  "iamRoleArnLambda": "arn:aws:iam::647768359793:role/amowu-dev-r-IamRoleLambda-10UL6MDEB0AWT",
+  "apiGatewayApi": "amowu"
+}

@@ -77,7 +77,7 @@
                 .content
                   | {{{linkify(val)}}}
               //- Location
-              .item
+              .item(v-if='location.city || location.countryCode')
                 i.marker.icon
                 .content(v-text="composedLocation")
               //- Languages
@@ -209,7 +209,7 @@
                             i.file.icon
                             .content
                               .header(v-text='keyword.name')
-                              .list(v-if='keyword.highlights.length')
+                              .list(v-if='keyword.highlights && keyword.highlights.length')
                                 .item(v-for='highlight in keyword.highlights')
                                   .content
                                     .description(v-text='highlight')
@@ -256,5 +256,5 @@
                               v-for='skill in project.skills',
                               v-text='skill.name',
                               :class='skill.color')
-          img.ui.right.floated.medium.image(src='http://cdn.amowu.com/sign.png')
+          img.ui.right.floated.medium.image(src='https://cdn.amowu.com/sign.png')
 </template>
