@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 4.4.5
+    version: 4.3.2
   environment:
     AWS_PROFILE: default
     AWS_REGION: us-east-1
