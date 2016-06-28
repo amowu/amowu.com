@@ -1,14 +1,72 @@
-# amowu.com
+# ![](http://i.imgur.com/EgkLVW4.png)[https://amowu.com](https://www.amowu.com)
 
 [![CircleCI](https://img.shields.io/circleci/project/amowu/amowu.com.svg?style=flat-square)](https://circleci.com/gh/amowu/amowu.com)
 [![David](https://img.shields.io/david/amowu/amowu.com.svg?style=flat-square)](https://david-dm.org/amowu/amowu.com)
+[![GitHub issues](https://img.shields.io/github/issues/amowu/amowu.com.svg?style=flat-square)](https://overv.io/amowu/amowu.com)
+[![Gitter](https://img.shields.io/gitter/room/amowu/amowu.com.svg)](https://gitter.im/amowu/amowu.com)
 
-- [Gitter](https://gitter.im/amowu/amowu.com)
-- [Roadmap](https://overv.io/amowu/amowu.com)
+## Table of contents
 
-## Stacks
+![](http://i.imgur.com/ISEoB3u.png) **[Stack](#stack)** - 列出 [https://amowu.com](https://amowu.com) 所使用的技術與工具，依照 Front-End、Back-End 與 DevOps 分類<br/>
+![](http://i.imgur.com/a5SHBxe.png) **[Architecture](#architecture)**<br/>
+![](http://i.imgur.com/Bjir8Xg.png) **[Directory Structure](#directory-structure)** - 大致介紹一些主要的資料夾與檔案<br/>
+![](http://i.imgur.com/VWqop0k.png) **[Development](#development)** - 介紹如何安裝與開發
+
+## Stack
+
+### Front-End
+
+- [x] [Vue.js](https://vuejs.org/) - Component-based MVVM library
+  - [x] [vue-router](https://github.com/vuejs/vue-router)
+  - [x] [vue-resource](https://github.com/vuejs/vue-resource)
+- [x] [Vuex](https://github.com/vuejs/vuex) - Flux application architecture for Vue.js
+  - [x] [vue-router-sync](https://github.com/vuejs/vuex-router-sync)
+- [x] [Semantic UI](http://semantic-ui.com/) - UI, responsive layouts
+- [x] [Phaser](http://phaser.io/) - HTML5 Game Framework
+
+#### Tools
+
+- [x] [Webpack](https://webpack.github.io/) - JavaScript build tool, task runner
+- [x] [Babel](https://babeljs.io/) - JavaScript compiler
+- [x] [ESLint](http://eslint.org/) - JavaScript linter
+- [ ] [Flow](https://flowtype.org/) - JavaScript static type checker
+
+### Back-End
+
+- [x] [Serverless Framework](http://serverless.com/)
+  - [x] [Amazon API Gateway](https://aws.amazon.com/api-gateway) - RESTful APIs endpoint
+  - [x] [AWS Lambda](https://aws.amazon.com/lambda) - Microservices
+  - [x] [Amazon DynamoDB](https://aws.amazon.com/dynamodb) - NoSQL database
+  - [x] [AWS CloudFormation](https://aws.amazon.com/cloudformation) - Infrastructure as code
+
+#### Hosting
+
+- [x] [Amazon S3](https://aws.amazon.com/s3) - Static website hosting
+- [x] [Amazon CloudFront](https://aws.amazon.com/cloudfront) - CDN
+- [x] [Amazon Route 53](https://aws.amazon.com/route53) - DNS
+- [x] [AWS Certificate Manager](https://aws.amazon.com/certificate-manager) - SSL/TLS credentials
+
+### DevOps
+
+- [x] [GitHub](https://github.com/amowu/amowu.com) - Source-code hosting
+- [x] [CircleCI](https://circleci.com/gh/amowu/amowu.com) - Continuous integration and delivery
+
+#### Monitoring
+
+- [x] [Segment](https://segment.com/) - Analytics integrator
+  - [x] [Google Analytics](https://www.google.com/analytics/)
+- [x] [Apex Ping](https://ping.apex.sh/) - Website uptime and performance monitor
+- [x] [StatusGator](https://statusgator.com/) - Cloud services status monitor
+
+#### Business Tools
+
+- [x] [overv.io](https://overv.io/amowu/amowu.com) - GitHub issues kanban
+- [x] [Slack](https://slack.com/) - Group notifications
+- [x] [Gitter](https://gitter.im/amowu/amowu.com) - Group chat
 
 ## Architecture
+
+🚧
 
 ## Directory Structure
 
@@ -54,6 +112,41 @@
 └── package.json
 ```
 
-Presentational 與 Container Components 的差別，詳細可以參考 [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.2wk206zci)。
+- Presentational Components 與 Container Components 的差別，詳細請參考 [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.2wk206zci)。
 
-## Usage
+## Development
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) v4.3.2 以上
+
+### Installation
+
+Clone 一份 repository 在本機端：
+
+```sh
+$ git clone https://github.com/amowu/amowu.com.git
+```
+
+進入資料夾底下，或是 `cd amowu.com`，然後安裝 dependencies：
+
+```sh
+$ npm install
+```
+
+運行本地端 server，打開瀏覽器 [http://localhost:8080](http://localhost:8080) 看結果：
+
+```sh
+$ npm run dev
+```
+
+### Task
+
+列出所有可以使用的命令：
+
+| Command | Description |
+| --- | --- |
+| `npm test` | 依序執行 `npm run test:lint` |
+| `npm run test:lint` | 執行 ESLint 檢查程式碼風格 |
+| `npm run dev` | 運行本地端 development server，http://localhost:8080 |
+| `npm run build` | 打包 production 原始碼至 dist 資料夾 |
