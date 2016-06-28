@@ -7,7 +7,7 @@ var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
-    app: './src/main.js',
+    app: './src/frontend/main.js',
     vendor: [
       'easystarjs',
       'is_js',
@@ -110,7 +110,7 @@ module.exports = {
     lessPlugins: [
       new RewriteImportPlugin({
         paths: {
-          '../../theme.config': path.resolve(__dirname, '../src/semantic-ui/theme.config')
+          '../../theme.config': path.resolve(__dirname, '../src/frontend/semantic-ui/theme.config')
         }
       })
     ]
