@@ -1,7 +1,7 @@
 import { Vuex } from '../core'
 
-import dialogues from '../vuex/mutations/dialogues'
-import resume from '../vuex/mutations/resume'
+import dialogues from './mutations/dialogues'
+import resume from './mutations/resume'
 
 const store = new Vuex.Store({
   modules: {

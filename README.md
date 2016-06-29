@@ -87,8 +87,7 @@
 │       ├── core
 │       │   ├── config.js ------------ 一些給前端用的相關配置（例如：API_INVOKE_URL）
 │       │   ├── resources.js --------- vue-resource 的相關配置
-│       │   ├── router.js ------------ vue-router 的相關配置
-│       │   └── store.js ------------- vuex store 的相關配置
+│       │   └── router.js ------------ vue-router 的相關配置
 │       ├── phaser-game -------------- 存放遊戲相關的程式碼，based on Phaser HTML5 game framework
 │       │   ├── prefabs
 │       │   └── states
@@ -100,7 +99,8 @@
 │       ├── vuex
 │       │   ├── actions
 │       │   ├── mutations
-│       │   └── const.js
+│       │   ├── const.js
+│       │   └── store.js
 │       └── main.js
 ├── static --------------------------- 存放原始碼不會用到的靜態資源擋（例如：favicon），build production 的時候，static 會被直接複製一份至 dist 資料夾底下
 ├── test

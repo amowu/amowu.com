@@ -23,7 +23,7 @@
 </style>
 
 <script>
-  import store from '../../core/store'
+  import store from '../../vuex/store'
   import Dialogue from './Dialogue'
   import Game from './Game'
 
