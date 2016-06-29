@@ -1,5 +1,5 @@
 import { VueRouter } from '../core'
-import Resume from '../vue/views/Resume'
+import Resume from './views/Resume'
 
 const router = new VueRouter({
   history: true
