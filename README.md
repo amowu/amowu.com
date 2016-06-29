@@ -7,12 +7,14 @@
 
 ## Table of contents
 
-![](http://i.imgur.com/ISEoB3u.png) **[Stack](#stack)** - 列出 [https://amowu.com](https://amowu.com) 所使用的技術與工具，依照 Front-End、Back-End 與 DevOps 分類<br/>
-![](http://i.imgur.com/a5SHBxe.png) **[Architecture](#architecture)**<br/>
-![](http://i.imgur.com/Bjir8Xg.png) **[Directory Structure](#directory-structure)** - 大致介紹一些主要的資料夾與檔案<br/>
-![](http://i.imgur.com/VWqop0k.png) **[Development](#development)** - 介紹如何安裝與開發
+- **[Stack](#stack)** - 列出使用的工具＆技術鏈<br/>
+- **[Architecture](#architecture)**<br/>
+- **[Directory Structure](#directory-structure)** - 列出資料夾與檔案的結構<br/>
+- **[Development](#development)** - 介紹如何安裝與開發
 
 ## Stack
+
+![](http://i.imgur.com/ISEoB3u.png) 下面列出這個專案所使用到的工具鏈與技術鏈，並依照 Front-End、Back-End 與 DevOps 作分類：
 
 ### Front-End
 
@@ -70,6 +72,8 @@
 
 ## Directory Structure
 
+![](http://i.imgur.com/a5SHBxe.png) 列出一些組織結構，並介紹主要的資料夾及檔案的作用：
+
 ```
 ├── dist ----------------------------- 勿動！用來存放 build 完的 production frontend SPA files
 ├── resource ------------------------- 存放一些與原始碼建置無關的資源檔案（例如：遊戲地圖美術原始擋）
@@ -115,6 +119,8 @@
 - Presentational Components 與 Container Components 的差別，詳細請參考 [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.2wk206zci)。
 
 ## Development
+
+![](http://i.imgur.com/Bjir8Xg.png) 開發文件，介紹開發前的準備事項、如何安裝與運行、以及其它詳細文件：
 
 ### Prerequisites
 
