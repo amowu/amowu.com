@@ -1,4 +1,4 @@
-import { getUserResume } from '../../core/resources'
+import { getUserResume } from '../../vue/resources'
 import { FETCH_USER_RESUME_SUCCESS } from '../const'
 
 export const fetchUserResume = function ({ dispatch }, userId) {

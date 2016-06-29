@@ -1,5 +1,5 @@
 import { Vue } from '../core'
-import { API_INVOKE_URL } from './config'
+import { API_INVOKE_URL } from '../core/config'
 
 Vue.http.options.root = API_INVOKE_URL
 
