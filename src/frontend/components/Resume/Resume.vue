@@ -5,6 +5,12 @@
 <script>
   import is from 'is_js'
 
+  import {
+    format,
+    icon,
+    to
+  } from '../../filters'
+
   export default {
     props: {
       picture: String,
@@ -47,6 +53,11 @@
         if (is.url(text)) return `<a href="${text}" target="_blank">${text}</a>`
         return `<span>${text}</span>`
       }
+    },
+    filters: {
+      format,
+      icon,
+      to
     }
   }
 </script>

@@ -1,6 +1,6 @@
 import {
   SET_ACTIVED_DIALOGUE
-} from '../const'
+} from '../core/type'
 
 function makeAction (type) {
   return ({ dispatch }, ...args) => dispatch(type, ...args)

@@ -1,8 +1,8 @@
 import { sync } from 'vuex-router-sync'
 
-import router from './vue/router'
-import store from './vuex/store'
-import App from './vue/views/App'
+import router from './core/router'
+import store from './core/store'
+import App from './App'
 
 sync(store, router)
 
