@@ -6,4 +6,4 @@ import App from './vue/views/App'
 
 sync(store, router)
 
-router.start(App, '#app')
+router.start(App, 'app')
