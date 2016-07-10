@@ -1,5 +1,5 @@
 <script>
-  import { setActivedDialogue } from '../../vuex/actions/dialogues'
+  import { setActivedDialogue } from '../actions/dialogues'
   import Dialogue from '../components/Dialogue'
 
   export default {

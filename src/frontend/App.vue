@@ -23,14 +23,14 @@
 </style>
 
 <script>
-  import store from '../../vuex/store'
-  import Dialogue from './Dialogue'
-  import Game from './Game'
+  import store from './core/store'
+  import DialoguePage from './pages/DialoguePage'
+  import GamePage from './pages/GamePage'
 
   export default {
     components: {
-      Dialogue,
-      Game
+      DialoguePage,
+      GamePage
     },
     store
   }
@@ -38,7 +38,7 @@
 
 <template lang="jade">
   div
-    game
-    dialogue
+    game-page
+    dialogue-page
     router-view
 </template>

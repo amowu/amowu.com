@@ -1,26 +1,14 @@
 var path = require('path')
+var RewriteImportPlugin = require('less-plugin-rewrite-import')
 var webpack = require('webpack')
 var config = require('../config')
 var utils = require('./utils')
-var RewriteImportPlugin = require('less-plugin-rewrite-import')
+
 var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
-    app: './src/frontend/main.js',
-    vendor: [
-      'easystarjs',
-      'is_js',
-      'lodash',
-      'moment',
-      'phaser',
-      'theaterjs',
-      'vue',
-      'vue-resource',
-      'vue-router',
-      'vuex',
-      'vuex-router-sync'
-    ]
+    app: './src/frontend/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -106,6 +94,9 @@ module.exports = {
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },
+  vue: {
+    loaders: utils.cssLoaders()
+  },
   lessLoader: {
     lessPlugins: [
       new RewriteImportPlugin({
@@ -114,8 +105,5 @@ module.exports = {
         }
       })
     ]
-  },
-  vue: {
-    loaders: utils.cssLoaders()
   }
 }

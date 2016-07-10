@@ -9,8 +9,8 @@
 </style>
 
 <script>
-  import Game from '../../phaser-game'
-  import { setActivedDialogue } from '../../vuex/actions/dialogues'
+  import Game from '../phaser-game'
+  import { setActivedDialogue } from '../actions/dialogues'
 
   export default {
     ready () {

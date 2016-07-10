@@ -1,4 +1,8 @@
-import { FETCH_USER_RESUME_SUCCESS } from '../const'
+import {
+  FETCH_USER_RESUME_ERROR,
+  FETCH_USER_RESUME_START,
+  FETCH_USER_RESUME_SUCCESS
+} from '../core/type'
 
 const state = {
   basics: {
@@ -30,7 +34,11 @@ const state = {
 }
 
 const mutations = {
-  [FETCH_USER_RESUME_SUCCESS] (state, resume) {
+  [FETCH_USER_RESUME_ERROR] (state, res) {
+    console.error(res)
+  },
+  [FETCH_USER_RESUME_START] (state) {},
+  [FETCH_USER_RESUME_SUCCESS] (state, { data: resume }) {
     state.basics = { ...resume.basics }
     state.works = [ ...resume.works ]
     state.educations = [ ...resume.educations ]
