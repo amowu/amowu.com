@@ -13,13 +13,12 @@
   },
   "homepage": "https://github.com/amowu/amowu.com",
   "scripts": {
-    "test": "npm run test:lint",
     "dev": "node scripts/dev-server.js",
     "build": "node scripts/build.js",
-    "test:unit": "karma start test/unit/karma.conf.js --single-run",
-    "test:e2e": "node test/e2e/runner.js",
-    "test:lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "test:flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "unit": "karma start test/unit/karma.conf.js --single-run",
+    "e2e": "node test/e2e/runner.js",
+    "test": "npm run unit && npm run e2e",
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "build:changelog": "conventional-changelog -i CHANGELOG.md -s -u -r 1 -p angular",
     "deploy:staging": "bash scripts/deploy_staging.sh",
     "deploy:production": "bash scripts/deploy_production.sh"
