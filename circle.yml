@@ -13,10 +13,6 @@ dependencies:
   cache_directories:
     - 'node_modules'
 
-test:
-  post:
-    - npm run build
-
 deployment:
   staging:
     branch: develop
