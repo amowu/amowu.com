@@ -11,7 +11,7 @@
 - **[Stack](#stack)**
 - **[Architecture](#architecture)**
 - **[Directory Structure](#directory-structure)**
-- **[Development](#development)**
+- **[Installation](#installation)**
 
 ## Stack
 
