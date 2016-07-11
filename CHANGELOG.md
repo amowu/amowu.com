@@ -1,3 +1,12 @@
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/amowu/amowu.com/compare/1.10.0...1.11.0) (2016-07-11)
+
+
+### Bug Fixes
+
+* **game:** p2.js critical dependencies problem ([4d76e42](https://github.com/amowu/amowu.com/commit/4d76e42)), closes [#34](https://github.com/amowu/amowu.com/issues/34)
+
+
 <a name="1.10.0"></a>
 # [1.10.0](https://github.com/amowu/amowu.com/compare/1.9.0...1.10.0) (2016-06-26)
 

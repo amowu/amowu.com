@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 4.4.5
+    version: 4.3.2
   environment:
     AWS_PROFILE: default
     AWS_REGION: us-east-1
@@ -14,8 +14,8 @@ dependencies:
     - 'node_modules'
 
 test:
-  post:
-    - npm run build
+  override:
+    - npm run unit
 
 deployment:
   staging:
