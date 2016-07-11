@@ -1,6 +1,7 @@
 # ![](http://i.imgur.com/EgkLVW4.png)[https://amowu.com](https://www.amowu.com)
 
 [![CircleCI](https://img.shields.io/circleci/project/amowu/amowu.com.svg?style=flat-square)](https://circleci.com/gh/amowu/amowu.com)
+[![codecov](https://codecov.io/gh/amowu/amowu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/amowu/amowu.com)
 [![David](https://img.shields.io/david/amowu/amowu.com.svg?style=flat-square)](https://david-dm.org/amowu/amowu.com)
 [![GitHub issues](https://img.shields.io/github/issues/amowu/amowu.com.svg?style=flat-square)](https://overv.io/amowu/amowu.com)
 [![Gitter](https://img.shields.io/gitter/room/amowu/amowu.com.svg)](https://gitter.im/amowu/amowu.com)
