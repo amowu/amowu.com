@@ -18,6 +18,7 @@ test:
     - npm run unit
   post:
     - npm run build
+    - bash <(curl -s https://codecov.io/bash)
 
 deployment:
   staging:
