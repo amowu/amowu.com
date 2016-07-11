@@ -5,11 +5,8 @@
 <script>
   import is from 'is_js'
 
-  import {
-    format,
-    icon,
-    to
-  } from '../../filters'
+  import { locale, total } from '../../filters/moment'
+  import icon from '../../filters/icon'
 
   export default {
     props: {
@@ -55,9 +52,9 @@
       }
     },
     filters: {
-      format,
+      locale,
       icon,
-      to
+      total
     }
   }
 </script>
@@ -131,11 +128,11 @@
                     | &nbsp;
                     span(v-text='work.position')
                     .sub.header
-                      span(v-text='work.startDate | format')
+                      span(v-text='work.startDate | locale')
                       span &nbsp;~&nbsp;
-                      span(v-text='work.endDate | format')
+                      span(v-text='work.endDate | locale')
                       span （
-                      span(v-text='work.startDate | to work.endDate')
+                      span(v-text='work.startDate | total work.endDate')
                       span ）
                 h4.ui.header
                   .content 專案
@@ -146,9 +143,9 @@
                     .content
                       .header(v-text='project.name')
                       .meta(v-if='project.startDate || project.endDate')
-                        span(v-text='project.startDate | format')
+                        span(v-text='project.startDate | locale')
                         span &nbsp;~&nbsp;
-                        span(v-text='project.endDate | format')
+                        span(v-text='project.endDate | locale')
                       .description(v-html='project.summary')
                       .extra
                         a(v-for='media in project.medias',
@@ -240,9 +237,9 @@
                     | &nbsp;
                     span(v-text="[education.area, education.studyType].join(' ')")
                     .sub.header
-                      span(v-text='education.startDate | format')
+                      span(v-text='education.startDate | locale')
                       span &nbsp;~&nbsp;
-                      span(v-text='education.endDate | format')
+                      span(v-text='education.endDate | locale')
                 ul.ui.list
                 div
                   li(v-for='highlight in education.highlights', v-text='highlight')
