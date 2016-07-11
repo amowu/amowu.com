@@ -21,7 +21,7 @@ module.exports = {
     alias: {
       'phaser': path.resolve(__dirname, '../node_modules/phaser/build/custom/phaser-split.js'),
       'pixi': path.resolve(__dirname, '../node_modules/phaser/build/custom/pixi.js'),
-      'p2': path.resolve(__dirname, '../node_modules/phaser/build/custom/p2.js')
+      'p2': path.resolve(__dirname, '../node_modules/p2/src/p2.js')
     }
   },
   resolveLoader: {
