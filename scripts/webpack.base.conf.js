@@ -55,10 +55,8 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'file',
-        query: {
-          name: utils.assetsPath('json/[name].[hash:7].[ext]')
-        }
+        loader: 'json',
+        exclude: /assets/
       },
       {
         test: /\.html$/,
@@ -83,6 +81,24 @@ module.exports = {
       {
         test: /phaser-split\.js$/,
         loader: 'imports?p2=p2&PIXI=pixi'
+      },
+      {
+        test: /assets\/[\w\W]+\.json$/,
+        loader: 'file',
+        query: {
+          name: utils.assetsPath('json/[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /auth0-lock[\\\/].*\.js$/,
+        loaders: [
+          'transform/cacheable?brfs',
+          'transform/cacheable?packageify'
+        ]
+      },
+      {
+        test: /auth0-lock[\\\/].*\.ejs$/,
+        loader: 'transform/cacheable?ejsify'
       }
     ]
   },
