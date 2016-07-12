@@ -23,71 +23,40 @@
 </style>
 
 <script>
-  import Auth0Lock from 'auth0-lock'
-
   import store from './core/store'
-  // import DialoguePage from './pages/DialoguePage'
-  // import GamePage from './pages/GamePage'
+  import DialoguePage from './pages/DialoguePage'
+  import GamePage from './pages/GamePage'
 
-  function checkAuth () {
-    if (localStorage.getItem('id_token')) {
-      return true
-    } else {
-      return false
-    }
-  }
+  import { checkAuth, login, logout } from './actions/auth'
 
   export default {
-    data () {
-      return {
-        authenticated: false
-      }
+    components: {
+      DialoguePage,
+      GamePage
     },
-    methods: {
-      login () {
-        const lock = new Auth0Lock('oEmGgFwDWAwQeu3y1qSWgxqFkrmlNduZ', 'amowu.auth0.com')
-
-        lock.show({
-          connections: ['Username-Password-Authentication'],
-          dict: 'zh-TW',
-          focusInput: true,
-          icon: 'https://cdn.amowu.com/auth0icon.0ade39b0-c1fa-4fd5-9c85-2ecdc6a1120b.png',
-          rememberLastLogin: false
-        }, (err, profile, token) => {
-          if (err) {
-            // Handle the error
-            console.log(err)
-          } else {
-            // Set the token and user profile in local storage
-            localStorage.setItem('profile', JSON.stringify(profile))
-            localStorage.setItem('id_token', token)
-            this.authenticated = true
-          }
-        })
-      },
-      logout () {
-        localStorage.removeItem('id_token')
-        localStorage.removeItem('profile')
-        this.authenticated = false
-      }
-    },
-    // components: {
-    //   DialoguePage,
-    //   GamePage
-    // },
     ready () {
-      this.authenticated = checkAuth()
+      this.checkAuth()
     },
-    store
+    store,
+    vuex: {
+      actions: {
+        checkAuth,
+        login,
+        logout
+      },
+      getters: {
+        auth: state => state.auth
+      }
+    }
   }
 </script>
 
 <template lang="jade">
   div
-    //- game-page
-    //- dialogue-page
-    button(@click='login', v-show='!authenticated') Login
-    button(@click='logout', v-show='authenticated') Logout
-    button(v-link='"protected"', v-show='authenticated') Protected Demo Page
+    game-page
+    dialogue-page
     router-view
+    button(@click='login', v-show='!auth.authenticated') Login
+    button(@click='logout', v-show='auth.authenticated') Logout
+    button(v-link='"protected"', v-show='auth.authenticated') Protected Demo Page
 </template>

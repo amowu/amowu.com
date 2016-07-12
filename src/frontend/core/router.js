@@ -12,10 +12,7 @@ const router = new VueRouter({
 
 router.map({
   '/': {
-    // component: Resume
-    component: {
-      template: '<div></div>'
-    }
+    component: Resume
   },
   '/user/:username': {
     component: Resume

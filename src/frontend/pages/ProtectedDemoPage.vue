@@ -1,15 +1,14 @@
 <script>
-  function checkAuth () {
-    if (localStorage.getItem('id_token')) {
-      return true
-    } else {
-      return false
-    }
-  }
   export default {
     route: {
       canActivate () {
-        return checkAuth()
+        // TODO: waiting for Vuex v2.0.0 release
+        return this.auth.authenticated
+      }
+    },
+    vuex: {
+      getters: {
+        auth: state => state.auth
       }
     }
   }
