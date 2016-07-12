@@ -23,14 +23,60 @@
 </style>
 
 <script>
+  import Auth0Lock from 'auth0-lock'
+
   import store from './core/store'
-  import DialoguePage from './pages/DialoguePage'
-  import GamePage from './pages/GamePage'
+  // import DialoguePage from './pages/DialoguePage'
+  // import GamePage from './pages/GamePage'
+
+  function checkAuth () {
+    if (localStorage.getItem('id_token')) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   export default {
-    components: {
-      DialoguePage,
-      GamePage
+    data () {
+      return {
+        authenticated: false
+      }
+    },
+    methods: {
+      login () {
+        const lock = new Auth0Lock('oEmGgFwDWAwQeu3y1qSWgxqFkrmlNduZ', 'amowu.auth0.com')
+
+        lock.show({
+          connections: ['Username-Password-Authentication'],
+          dict: 'zh-TW',
+          focusInput: true,
+          icon: 'https://cdn.amowu.com/auth0icon.0ade39b0-c1fa-4fd5-9c85-2ecdc6a1120b.png',
+          rememberLastLogin: false
+        }, (err, profile, token) => {
+          if (err) {
+            // Handle the error
+            console.log(err)
+          } else {
+            // Set the token and user profile in local storage
+            localStorage.setItem('profile', JSON.stringify(profile))
+            localStorage.setItem('id_token', token)
+            this.authenticated = true
+          }
+        })
+      },
+      logout () {
+        localStorage.removeItem('id_token')
+        localStorage.removeItem('profile')
+        this.authenticated = false
+      }
+    },
+    // components: {
+    //   DialoguePage,
+    //   GamePage
+    // },
+    ready () {
+      this.authenticated = checkAuth()
     },
     store
   }
@@ -38,7 +84,10 @@
 
 <template lang="jade">
   div
-    game-page
-    dialogue-page
+    //- game-page
+    //- dialogue-page
+    button(@click='login', v-show='!authenticated') Login
+    button(@click='logout', v-show='authenticated') Logout
+    button(v-link='"protected"', v-show='authenticated') Protected Demo Page
     router-view
 </template>
