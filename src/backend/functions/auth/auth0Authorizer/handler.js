@@ -49,11 +49,11 @@ const authenticate = function (params) {
   }
 
   return getTokenDataPromise
-    .then(userInfo => {
-      if (!userInfo || !userInfo.user_id) {
+    .then(tokenInfo => {
+      if (!tokenInfo || !tokenInfo.user_id) {
         throw new Error('No "user_id" returned from Auth0')
       }
-      return userInfo.user_id
+      return tokenInfo.user_id
     })
     .then(principalId => generatePolicy(principalId, 'Allow', params.methodArn))
 }
