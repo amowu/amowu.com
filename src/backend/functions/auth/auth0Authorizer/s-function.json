@@ -16,7 +16,9 @@
   "environment": {
     "SERVERLESS_PROJECT": "${project}",
     "SERVERLESS_STAGE": "${stage}",
-    "SERVERLESS_REGION": "${region}"
+    "SERVERLESS_REGION": "${region}",
+    "AUTH0_DOMAIN": "amowu.auth0.com",
+    "AUTH0_CLIENT_ID": "oEmGgFwDWAwQeu3y1qSWgxqFkrmlNduZ"
   },
   "vpc": {
     "securityGroupIds": [],
