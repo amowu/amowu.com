@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Resume from '../pages/ResumePage'
+import ProtectedDemoPage from '../pages/ProtectedDemoPage'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,9 @@ router.map({
     component: {
       template: '<div></div>'
     }
+  },
+  '/protected': {
+    component: ProtectedDemoPage
   }
 })
 

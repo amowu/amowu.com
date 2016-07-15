@@ -24,6 +24,7 @@
     "deploy:production": "bash scripts/deploy_production.sh"
   },
   "dependencies": {
+    "auth0-lock": "^9.2.1",
     "easystarjs": "^0.2.3",
     "is_js": "^0.8.0",
     "lodash": "^4.13.1",
@@ -33,10 +34,10 @@
     "semantic-ui-less": "^2.1.8",
     "theaterjs": "^3.0.0",
     "vue": "^1.0.21",
-    "vue-resource": "^0.7.4",
+    "vue-resource": "^0.9.3",
     "vue-router": "^0.7.13",
-    "vuex": "^0.6.3",
-    "vuex-router-sync": "^1.0.0"
+    "vuex": "^0.8.2",
+    "vuex-router-sync": "^2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -100,6 +101,7 @@
     "sinon-chai": "^2.8.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.1.0",
+    "transform-loader": "^0.2.3",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",

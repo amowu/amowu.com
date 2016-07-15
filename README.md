@@ -47,6 +47,10 @@
 - [x] [Amazon Route 53](https://aws.amazon.com/route53) - DNS
 - [x] [AWS Certificate Manager](https://aws.amazon.com/certificate-manager) - SSL/TLS credentials
 
+#### Services
+
+- [ ] [Auth0](https://auth0.com/) - identity as a service
+
 ### DevOps
 
 - [x] [GitHub](https://github.com/amowu/amowu.com) - source-code hosting

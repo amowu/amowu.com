@@ -27,12 +27,27 @@
   import DialoguePage from './pages/DialoguePage'
   import GamePage from './pages/GamePage'
 
+  import { checkAuth, login, logout } from './actions/auth'
+
   export default {
     components: {
       DialoguePage,
       GamePage
     },
-    store
+    ready () {
+      this.checkAuth()
+    },
+    store,
+    vuex: {
+      actions: {
+        checkAuth,
+        login,
+        logout
+      },
+      getters: {
+        auth: state => state.auth
+      }
+    }
   }
 </script>
 
@@ -41,4 +56,7 @@
     game-page
     dialogue-page
     router-view
+    button(@click='login', v-show='!auth.authenticated') Login
+    button(@click='logout', v-show='auth.authenticated') Logout
+    button(v-link='"protected"', v-show='auth.authenticated') Protected Demo Page
 </template>

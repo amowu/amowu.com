@@ -4,18 +4,7 @@ import {
   FETCH_USER_RESUME_START,
   FETCH_USER_RESUME_SUCCESS
 } from '../core/type'
-
-function makeRequest (resource, startType, successType, errorType) {
-  return ({ dispatch }, ...args) => {
-    dispatch(startType)
-    return resource(...args)
-      .then(response => dispatch(successType, response, ...args))
-      .catch(response => {
-        dispatch(errorType, response, ...args)
-        return Promise.reject()
-      })
-  }
-}
+import makeRequest from '../utils/makeRequest'
 
 /** GET /users/:userId/resume */
 export const fetchUserResume = makeRequest(
