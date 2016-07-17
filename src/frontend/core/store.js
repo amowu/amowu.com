@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { ROUTE_CHANGED } from './type'
+
 Vue.use(Vuex)
 
 import auth from '../mutations/auth'
@@ -12,6 +14,13 @@ const store = new Vuex.Store({
     auth,
     dialogues,
     resume
+  },
+  mutations: {
+    [ROUTE_CHANGED]: (state, { path }) => {
+      analytics.page({
+        path
+      })
+    }
   }
 })
 
