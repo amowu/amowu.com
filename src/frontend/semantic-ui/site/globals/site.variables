@@ -2,4 +2,6 @@
      User Global Variables
 *******************************/
 
+@importGoogleFonts : false;
+
 @fontPath  : '../../default/assets/fonts';
