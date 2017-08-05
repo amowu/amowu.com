@@ -1,8 +1,0 @@
-{
-  "readUserResumeApiRequestTemplate": {
-    "application/json": "{\"username\": \"$input.params('username')\"}"
-  },
-  "readUserResumeApiDefaultResponseTemplate": {
-    "application/json;charset=UTF-8": "{\"basics\":{\"name\":$input.json('$.Item.name'),\"label\":$input.json('$.Item.label'),\"picture\":$input.json('$.Item.picture'),\"email\":$input.json('$.Item.email'),\"phone\":$input.json('$.Item.phone'),\"website\":$input.json('$.Item.website'),\"blog\":$input.json('$.Item.blog'),\"brief\":$input.json('$.Item.brief'),\"summary\":$input.json('$.Item.summary'),\"location\":$input.json('$.Item.location'),\"profiles\":$input.json('$.Item.profiles')},\"works\":$input.json('$.Item.works'),\"educations\":$input.json('$.Item.educations'),\"skills\":$input.json('$.Item.skills'),\"projects\":$input.json('$.Item.projects'),\"writing\":$input.json('$.Item.writing'),\"speaking\":$input.json('$.Item.speaking'),\"languages\":$input.json('$.Item.languages')}"
-  }
-}

@@ -1,8 +1,0 @@
-.DS_Store
-dist/
-node_modules/
-test/e2e/reports
-test/unit/coverage
-**/admin.env
-npm-debug.log
-selenium-debug.log

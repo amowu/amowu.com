@@ -1,6 +1,0 @@
-{
-  "region": "us-east-1",
-  "resourcesStackName": "amowu-prod-r",
-  "iamRoleArnLambda": "arn:aws:iam::647768359793:role/amowu-prod-r-IamRoleLambda-N2ARGTIF4I98",
-  "apiGatewayApi": "amowu"
-}
