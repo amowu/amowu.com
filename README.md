@@ -131,28 +131,28 @@ Development:
 
 ```sh
 # install dependencies
-$ npm install
+$ yarn install
 
 # serve with hot reload at http://localhost:8080
-$ npm run dev
+$ yarn run dev
 ```
 
 Testing:
 
 ```sh
 # run unit tests
-$ npm run unit
+$ yarn run unit
 
 # run e2e tests
-$ npm run e2e
+$ yarn run e2e
 
 # run all tests
-$ npm test
+$ yarn test
 ```
 
 Production:
 
 ```sh
 # build for production with minification
-$ npm run build
+$ yarn run build
 ```
