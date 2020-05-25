@@ -1,6 +1,7 @@
 <script>
   import { fetchUserResume } from '../actions/resume'
   import Resume from '../components/Resume'
+  import resumeZhTw from '../data/resume-zhtw'
 
   export default {
     methods: {
@@ -21,7 +22,7 @@
         fetchUserResume
       },
       getters: {
-        resume: state => state.resume
+        resume: state => resumeZhTw
       }
     }
   }
