@@ -49,8 +49,7 @@ amowu.com/
 ├── .prettierrc
 ├── docker-compose.yml              # 本地 DynamoDB Local
 ├── .github/workflows/
-│   ├── ci.yml                      # PR + push main: lint + typecheck + test + build
-│   └── cd.yml                      # push main: cdk deploy --all
+│   └── ci-cd.yml                   # verify (PR + push main) → deploy (push main only)
 │
 ├── apps/
 │   ├── web/                        # React 19 + Phaser 4 + Vite + TS
@@ -230,7 +229,7 @@ export const Route = createRootRoute({
 
 ### 4.1 Stack
 
-NestJS（Express platform）+ Lambda Web Adapter（Container image）+ DynamoDB（AWS SDK v3）
+NestJS（Express platform）+ Lambda Web Adapter（Container image）+ DynamoDB（**ElectroDB** ODM）
 
 ### 4.2 結構
 
@@ -254,12 +253,13 @@ apps/api/
 │   │   └── env.schema.ts           # Zod 驗證環境變數
 │   ├── infra/dynamodb/
 │   │   ├── dynamodb.module.ts
-│   │   └── dynamodb.client.ts      # 注入 DynamoDBClient
+│   │   └── dynamodb.client.ts      # 注入 DynamoDBClient（給 ElectroDB 用）
 │   └── resume/
 │       ├── resume.module.ts
 │       ├── resume.controller.ts    # GET /resume
-│       ├── resume.service.ts
-│       └── resume.repository.ts
+│       ├── resume.service.ts       # DB → API contract 投射 + Zod parse
+│       ├── resume.repository.ts    # 包 ResumeEntity 的 CRUD
+│       └── resume.entity.ts        # ElectroDB Entity 定義（DB schema）
 └── tests/
     └── resume.controller.spec.ts   # Vitest
 ```
@@ -277,12 +277,77 @@ async function bootstrap() {
 }
 ```
 
-**三層分層**：Controller → Service → Repository。
-- Controller：HTTP 入口，response 用 `ResumeSchema.parse()` 驗證
-- Service：業務邏輯（目前只有 `findOne()`）
-- Repository：純 DynamoDB 存取
+**三層分層 + DB/API schema 分離**：
 
-**從 `@amowu/shared` import Zod schema 跟 type**，前後端共用單一 source of truth。
+- **`resume.entity.ts`（ElectroDB）** — 描述「DB 內部 shape」，含 keys、indexes、未來可能的 internal 欄位（version、updatedAt 等）
+- **`resume.repository.ts`** — 包 `ResumeEntity.get/put/query` 等 CRUD，回傳 ElectroDB 推導的 `EntityItem<typeof ResumeEntity>` type
+- **`resume.service.ts`** — 業務邏輯；**做 DB shape → API contract 的投射**，並用 `ResumeSchema.parse()` 驗證
+- **`resume.controller.ts`** — HTTP 入口
+
+**Schema 分層原則：**
+
+- **DB shape（ElectroDB）**：DynamoDB 內部的真實 shape。可能包含 internal 欄位（version、soft delete flag）
+- **API contract（Zod, in `@amowu/shared`）**：對外 response 的乾淨 shape
+- **兩者刻意分開**，未來 DB shape 變化不會自動 leak 到 API
+- 中間用 `service.findOne()` 做投射 + Zod parse 驗證
+
+**ElectroDB Entity 範例：**
+
+```ts
+// apps/api/src/resume/resume.entity.ts
+import { Entity } from 'electrodb'
+
+export const ResumeEntity = new Entity({
+  model: { entity: 'resume', service: 'amowu', version: '1' },
+  attributes: {
+    id: { type: 'string', required: true },
+    name: { type: 'string', required: true },
+    email: { type: 'string', required: true },
+    experiences: { type: 'list', items: { type: 'map', properties: {
+      company: { type: 'string', required: true },
+      title: { type: 'string', required: true },
+      startDate: { type: 'string', required: true },
+      description: { type: 'string' },
+    }}},
+    skills: { type: 'list', items: { type: 'string' }},
+    version: { type: 'number', default: 1 },
+    updatedAt: { type: 'string', default: () => new Date().toISOString() },
+  },
+  indexes: {
+    primary: {
+      pk: { field: 'pk', composite: ['id'] },
+      sk: { field: 'sk', composite: [] },
+    },
+  },
+}, { table: process.env.DDB_TABLE_NAME!, client: ddbClient })
+```
+
+**Service 層投射：**
+
+```ts
+// apps/api/src/resume/resume.service.ts
+import { ResumeSchema, type Resume } from '@amowu/shared'
+
+@Injectable()
+export class ResumeService {
+  constructor(private repo: ResumeRepository) {}
+
+  async findOne(id: string): Promise<Resume> {
+    const item = await this.repo.findOne(id)
+    if (!item) throw new NotFoundException()
+    return ResumeSchema.parse({
+      id: item.id,
+      name: item.name,
+      email: item.email,
+      experiences: item.experiences,
+      skills: item.skills,
+      // 不傳 version、updatedAt（DB 內部細節）
+    })
+  }
+}
+```
+
+**從 `@amowu/shared` import Zod schema 跟 type**，前後端共用 API contract 的 single source of truth；DB schema 是 `apps/api` 內部細節，不外洩。
 
 **環境變數**（全部用 Zod schema 驗證，啟動時驗不過直接 crash）：
 
@@ -451,15 +516,21 @@ new dynamodb.Table(this, 'ResumeTable', {
 
 ## 7. CI/CD（GitHub Actions）
 
-### 7.1 Workflows
+### 7.1 Workflow
 
-**`.github/workflows/ci.yml`**（PR + push main 觸發）：
+**單一 file `.github/workflows/ci-cd.yml`**，PR 跟 push main 共用，用 `needs:` 串序：
+
 ```yaml
+name: CI/CD
 on:
   pull_request: { branches: [main] }
-  push: { branches: [main] }
+  push:         { branches: [main] }
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
-  lint-test-build:
+  verify:                                      # PR 跟 push main 都跑
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -470,17 +541,10 @@ jobs:
       - run: npm run typecheck
       - run: npm run test
       - run: npm run build
-```
 
-**`.github/workflows/cd.yml`**（push main 觸發）：
-```yaml
-on:
-  push: { branches: [main] }
-permissions:
-  id-token: write
-  contents: read
-jobs:
-  deploy:
+  deploy:                                      # 只有 push main 跑
+    needs: verify                              # verify 過才跑
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -495,11 +559,26 @@ jobs:
       - run: npm run cdk -w @amowu/infra -- deploy --all --require-approval never
 ```
 
+**執行情境：**
+
+| 事件 | `verify` | `deploy` |
+|---|---|---|
+| 開 PR / push 到 PR branch | ✅ 跑 | ⏭ skip（`if` 不成立） |
+| Merge PR 到 main（push to main） | ✅ 跑 | ✅ 跑（在 verify 通過後） |
+| `verify` 失敗 | ❌ | ⏭ skip（`needs` 擋住） |
+
+**為什麼用單一 file + `needs:`？**
+
+- 同一個 workflow 內的 jobs 用 `needs:` 是 GitHub Actions 原生 DAG，序列化保證強
+- 避免「ci.yml 跟 cd.yml 兩個 file 平行跑、CD 在 CI 失敗時偷跑」的競態
+- PR 上的 status check 就叫 `verify`，branch protection 直接 require 它
+- 跨 workflow 的 `workflow_run` 觸發機制太弱（log 跳來跳去、re-run 不直觀），不採用
+
 ### 7.2 Branch protection
 
 `Settings → Branches → main`：
 - ✅ Require a pull request before merging
-- ✅ Require status checks to pass before merging（select `lint-test-build`）
+- ✅ Require status checks to pass before merging（select `verify`）
 - ✅ Require branches to be up to date before merging
 - ✅ Do not allow bypassing the above settings
 
