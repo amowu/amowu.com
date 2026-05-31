@@ -20,11 +20,10 @@ function reducer(state: State, action: Action): State {
     case 'typeEnd': {
       if (state.status !== 'typing') return state
       const node = dialogues[state.activeId]
-      const isOptions = node.next.kind === 'options'
-      return {
-        status: isOptions ? 'waitingOption' : 'waitingNext',
-        activeId: state.activeId,
+      if (node.next.kind === 'options') {
+        return { status: 'waitingOption', activeId: state.activeId }
       }
+      return { status: 'waitingNext', activeId: state.activeId }
     }
     case 'advance':
       return { status: 'typing', activeId: action.nextId }
