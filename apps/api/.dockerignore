@@ -1,0 +1,8 @@
+node_modules
+dist
+tests
+scripts
+seeds
+*.spec.ts
+.git
+.env*
