@@ -1,0 +1,21 @@
+{
+  "name": "@amowu/infra",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "cdk": "cdk",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.160.0",
+    "constructs": "^10.4.0"
+  },
+  "devDependencies": {
+    "aws-cdk": "^2.160.0",
+    "tsx": "^4.19.0",
+    "vitest": "^2.0.0"
+  }
+}
