@@ -1,6 +1,6 @@
-import type { ZodSchema } from 'zod'
+import type { ZodTypeAny, z } from 'zod'
 
-export async function apiFetch<T>(path: string, schema: ZodSchema<T>): Promise<T> {
+export async function apiFetch<S extends ZodTypeAny>(path: string, schema: S): Promise<z.infer<S>> {
   const res = await fetch(path)
   if (!res.ok) throw new Error(`${path} returned ${res.status}`)
   const json = await res.json()
