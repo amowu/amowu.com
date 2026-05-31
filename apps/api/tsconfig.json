@@ -10,7 +10,7 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
-      "@amowu/shared": ["../../packages/shared/src/index.ts"]
+      "@amowu/shared": ["../../packages/shared/dist/index.d.ts"]
     }
   },
   "include": ["src/**/*", "tests/**/*", "scripts/**/*"]

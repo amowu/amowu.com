@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "npm run build -w @amowu/shared",
     "build": "nest build",
     "predev": "docker compose -f ../../docker-compose.yml up -d dynamodb && npm run ddb:reset",
     "dev": "nest start --watch",
