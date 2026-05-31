@@ -22,3 +22,6 @@ dynamodb-data/
 
 # Vite
 **/.vite/
+
+# TanStack Router (auto-generated)
+**/routeTree.gen.ts
