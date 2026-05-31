@@ -1,47 +1,41 @@
-import { Scene } from 'phaser';
+import { Scene } from 'phaser'
 
-export class Preloader extends Scene
-{
-    constructor ()
-    {
-        super('Preloader');
-    }
+export class Preloader extends Scene {
+  constructor() {
+    super('Preloader')
+  }
 
-    init ()
-    {
-        //  We loaded this image in our Boot Scene, so we can display it here
-        this.add.image(512, 384, 'background');
+  init() {
+    // Simple progress bar
+    const { width, height } = this.scale
+    this.add.rectangle(width / 2, height / 2, 468, 32).setStrokeStyle(1, 0xffffff)
+    const bar = this.add.rectangle(width / 2 - 230, height / 2, 4, 28, 0xffffff)
 
-        //  A simple progress bar. This is the outline of the bar.
-        this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
+    this.load.on('progress', (progress: number) => {
+      bar.width = 4 + 460 * progress
+    })
+  }
 
-        //  This is the progress bar itself. It will increase in size from the left based on the % of progress.
-        const bar = this.add.rectangle(512-230, 384, 4, 28, 0xffffff);
+  preload() {
+    this.load.setPath('assets/phaser-game/')
 
-        //  Use the 'progress' event emitted by the LoaderPlugin to update the loading bar
-        this.load.on('progress', (progress: number) => {
+    // Tilemap
+    this.load.tilemapTiledJSON('map', 'map.json')
+    this.load.image('tilesheet', 'tilesheet.png')
 
-            //  Update the progress bar (our bar is 464px wide, so 100% = 464px)
-            bar.width = 4 + (460 * progress);
+    // Sprites — frame sizes from old PreloadState
+    this.load.spritesheet('player', 'player.png', { frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('coder', 'coder.png', { frameWidth: 24, frameHeight: 24 })
+    this.load.spritesheet('octocat', 'octocat.png', { frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('guardcss3npc', 'guardcss3npc.png', { frameWidth: 25, frameHeight: 24 })
+    this.load.spritesheet('guardjsnpc', 'guardjsnpc.png', { frameWidth: 25, frameHeight: 24 })
+    this.load.spritesheet('guardhtml5npc', 'guardhtml5npc.png', { frameWidth: 25, frameHeight: 24 })
+    this.load.spritesheet('villageboy', 'villageboy.png', { frameWidth: 24, frameHeight: 24 })
+    this.load.spritesheet('villagegirl', 'villagegirl.png', { frameWidth: 24, frameHeight: 24 })
+    this.load.spritesheet('desertnpc', 'desertnpc.png', { frameWidth: 24, frameHeight: 24 })
+  }
 
-        });
-    }
-
-    preload ()
-    {
-        //  Load the assets for the game - Replace with your own assets
-        this.load.setPath('assets');
-
-        this.load.image('logo', 'logo.png');
-        this.load.image('star', 'star.png');
-    }
-
-    create ()
-    {
-        //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
-        //  For example, you can define global animations here, so we can use them in other scenes.
-
-        //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('MainMenu');
-    }
+  create() {
+    this.scene.start('WorldScene')
+  }
 }
