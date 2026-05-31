@@ -1,0 +1,24 @@
+/* animal-island-ui bundles Nunito + Zen Maru Gothic + Noto Sans SC */
+@import 'animal-island-ui/style';
+/* Add only Noto Sans TC (Traditional Chinese) ourselves */
+@import '@fontsource/noto-sans-tc/400.css';
+@import '@fontsource/noto-sans-tc/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+button,
+input,
+.ai-modal,
+.ai-card {
+  font-family: 'Nunito', 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
