@@ -1,0 +1,6 @@
+src/frontend/
+src/backend/
+dist/
+node_modules/
+cdk.out/
+*.old-vue1-backup
