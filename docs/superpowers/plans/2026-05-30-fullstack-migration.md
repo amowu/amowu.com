@@ -445,115 +445,418 @@ git add packages/shared/ package-lock.json
 git commit -m "feat(shared): add package skeleton"
 ```
 
-### Task 2.2: Resume schema — TDD
+### Task 2.2: Port JSON Resume v1 schema to Zod (split per section)
 
-- [ ] **Step 1: Write failing test `packages/shared/tests/resume.schema.spec.ts`**
+**Files:**
+- Create: `packages/shared/src/resume/basics.schema.ts`
+- Create: `packages/shared/src/resume/work.schema.ts`
+- Create: `packages/shared/src/resume/volunteer.schema.ts`
+- Create: `packages/shared/src/resume/education.schema.ts`
+- Create: `packages/shared/src/resume/awards.schema.ts`
+- Create: `packages/shared/src/resume/certificates.schema.ts`
+- Create: `packages/shared/src/resume/publications.schema.ts`
+- Create: `packages/shared/src/resume/skills.schema.ts`
+- Create: `packages/shared/src/resume/languages.schema.ts`
+- Create: `packages/shared/src/resume/interests.schema.ts`
+- Create: `packages/shared/src/resume/references.schema.ts`
+- Create: `packages/shared/src/resume/projects.schema.ts`
+- Create: `packages/shared/src/resume/index.ts`
+- Create: `packages/shared/src/index.ts`
+- Create: `packages/shared/tests/resume.schema.spec.ts`
 
-```ts
-import { describe, it, expect } from 'vitest'
-import { ResumeSchema, type Resume } from '../src/resume.schema'
+> **Reference:** [JSON Resume v1 schema](https://jsonresume.org/schema/). The 12 top-level sections and their fields come from this standard. We use Zod to port it, splitting one file per section for maintainability.
 
-describe('ResumeSchema', () => {
-  const valid: Resume = {
-    id: 'amowu',
-    name: 'Amo Wu',
-    email: 'amowu@hahow.in',
-    experiences: [
-      {
-        company: 'Hahow',
-        title: 'Software Engineer',
-        startDate: '2020-01',
-        description: 'Built things.',
-      },
-    ],
-    skills: ['TypeScript', 'React', 'AWS'],
-  }
-
-  it('accepts a valid resume', () => {
-    expect(() => ResumeSchema.parse(valid)).not.toThrow()
-  })
-
-  it('rejects missing required field', () => {
-    const { id: _, ...invalid } = valid
-    expect(() => ResumeSchema.parse(invalid)).toThrow()
-  })
-
-  it('treats description as optional', () => {
-    const noDesc = {
-      ...valid,
-      experiences: [{ company: 'X', title: 'Y', startDate: '2020-01' }],
-    }
-    expect(() => ResumeSchema.parse(noDesc)).not.toThrow()
-  })
-
-  it('rejects experiences missing required fields', () => {
-    const badExp = { ...valid, experiences: [{ company: 'X' }] }
-    expect(() => ResumeSchema.parse(badExp)).toThrow()
-  })
-})
-```
-
-- [ ] **Step 2: Run test, confirm failure**
-
-```bash
-npm run test -w @amowu/shared
-```
-Expected: FAIL — module `../src/resume.schema` does not exist.
-
-- [ ] **Step 3: Implement `packages/shared/src/resume.schema.ts`**
+#### Step 1: Write `packages/shared/src/resume/basics.schema.ts`
 
 ```ts
 import { z } from 'zod'
 
-export const ExperienceSchema = z.object({
-  company: z.string(),
-  title: z.string(),
-  startDate: z.string(),
-  endDate: z.string().optional(),
-  description: z.string().optional(),
+export const LocationSchema = z.object({
+  address: z.string().optional(),
+  postalCode: z.string().optional(),
+  city: z.string().optional(),
+  countryCode: z.string().optional(),
+  region: z.string().optional(),
 })
 
-export type Experience = z.infer<typeof ExperienceSchema>
+export const ProfileSchema = z.object({
+  network: z.string(),
+  username: z.string().optional(),
+  url: z.string().url(),
+})
+
+export const BasicsSchema = z.object({
+  name: z.string(),
+  label: z.string().optional(),
+  image: z.string().url().optional(),
+  email: z.string().email(),
+  phone: z.string().optional(),
+  url: z.string().url().optional(),
+  summary: z.string().optional(),
+  location: LocationSchema.optional(),
+  profiles: z.array(ProfileSchema).default([]),
+})
+
+export type Location = z.infer<typeof LocationSchema>
+export type Profile = z.infer<typeof ProfileSchema>
+export type Basics = z.infer<typeof BasicsSchema>
+```
+
+#### Step 2: Write `packages/shared/src/resume/work.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const WorkSchema = z.object({
+  name: z.string(),
+  position: z.string(),
+  url: z.string().url().optional(),
+  startDate: z.string(),
+  endDate: z.string().optional(),
+  summary: z.string().optional(),
+  highlights: z.array(z.string()).default([]),
+  location: z.string().optional(),
+})
+
+export type Work = z.infer<typeof WorkSchema>
+```
+
+#### Step 3: Write `packages/shared/src/resume/volunteer.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const VolunteerSchema = z.object({
+  organization: z.string(),
+  position: z.string(),
+  url: z.string().url().optional(),
+  startDate: z.string(),
+  endDate: z.string().optional(),
+  summary: z.string().optional(),
+  highlights: z.array(z.string()).default([]),
+})
+
+export type Volunteer = z.infer<typeof VolunteerSchema>
+```
+
+#### Step 4: Write `packages/shared/src/resume/education.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const EducationSchema = z.object({
+  institution: z.string(),
+  url: z.string().url().optional(),
+  area: z.string(),
+  studyType: z.string().optional(),
+  startDate: z.string(),
+  endDate: z.string().optional(),
+  score: z.string().optional(),
+  courses: z.array(z.string()).default([]),
+})
+
+export type Education = z.infer<typeof EducationSchema>
+```
+
+#### Step 5: Write `packages/shared/src/resume/awards.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const AwardSchema = z.object({
+  title: z.string(),
+  date: z.string().optional(),
+  awarder: z.string().optional(),
+  summary: z.string().optional(),
+})
+
+export type Award = z.infer<typeof AwardSchema>
+```
+
+#### Step 6: Write `packages/shared/src/resume/certificates.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const CertificateSchema = z.object({
+  name: z.string(),
+  date: z.string().optional(),
+  issuer: z.string().optional(),
+  url: z.string().url().optional(),
+})
+
+export type Certificate = z.infer<typeof CertificateSchema>
+```
+
+#### Step 7: Write `packages/shared/src/resume/publications.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const PublicationSchema = z.object({
+  name: z.string(),
+  publisher: z.string().optional(),
+  releaseDate: z.string().optional(),
+  url: z.string().url().optional(),
+  summary: z.string().optional(),
+})
+
+export type Publication = z.infer<typeof PublicationSchema>
+```
+
+#### Step 8: Write `packages/shared/src/resume/skills.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const SkillSchema = z.object({
+  name: z.string(),
+  level: z.string().optional(),
+  keywords: z.array(z.string()).default([]),
+})
+
+export type Skill = z.infer<typeof SkillSchema>
+```
+
+#### Step 9: Write `packages/shared/src/resume/languages.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const LanguageSchema = z.object({
+  language: z.string(),
+  fluency: z.string().optional(),
+})
+
+export type Language = z.infer<typeof LanguageSchema>
+```
+
+#### Step 10: Write `packages/shared/src/resume/interests.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const InterestSchema = z.object({
+  name: z.string(),
+  keywords: z.array(z.string()).default([]),
+})
+
+export type Interest = z.infer<typeof InterestSchema>
+```
+
+#### Step 11: Write `packages/shared/src/resume/references.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const ReferenceSchema = z.object({
+  name: z.string(),
+  reference: z.string(),
+})
+
+export type Reference = z.infer<typeof ReferenceSchema>
+```
+
+#### Step 12: Write `packages/shared/src/resume/projects.schema.ts`
+
+```ts
+import { z } from 'zod'
+
+export const ProjectSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  highlights: z.array(z.string()).default([]),
+  keywords: z.array(z.string()).default([]),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
+  url: z.string().url().optional(),
+  roles: z.array(z.string()).default([]),
+  entity: z.string().optional(),
+  type: z.string().optional(),
+})
+
+export type Project = z.infer<typeof ProjectSchema>
+```
+
+#### Step 13: Write `packages/shared/src/resume/index.ts` (compose ResumeSchema)
+
+```ts
+import { z } from 'zod'
+import { BasicsSchema } from './basics.schema'
+import { WorkSchema } from './work.schema'
+import { VolunteerSchema } from './volunteer.schema'
+import { EducationSchema } from './education.schema'
+import { AwardSchema } from './awards.schema'
+import { CertificateSchema } from './certificates.schema'
+import { PublicationSchema } from './publications.schema'
+import { SkillSchema } from './skills.schema'
+import { LanguageSchema } from './languages.schema'
+import { InterestSchema } from './interests.schema'
+import { ReferenceSchema } from './references.schema'
+import { ProjectSchema } from './projects.schema'
 
 export const ResumeSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  email: z.string().email(),
-  experiences: z.array(ExperienceSchema),
-  skills: z.array(z.string()),
+  $schema: z.string().optional(),
+  basics: BasicsSchema,
+  work: z.array(WorkSchema).default([]),
+  volunteer: z.array(VolunteerSchema).default([]),
+  education: z.array(EducationSchema).default([]),
+  awards: z.array(AwardSchema).default([]),
+  certificates: z.array(CertificateSchema).default([]),
+  publications: z.array(PublicationSchema).default([]),
+  skills: z.array(SkillSchema).default([]),
+  languages: z.array(LanguageSchema).default([]),
+  interests: z.array(InterestSchema).default([]),
+  references: z.array(ReferenceSchema).default([]),
+  projects: z.array(ProjectSchema).default([]),
 })
 
 export type Resume = z.infer<typeof ResumeSchema>
+
+export * from './basics.schema'
+export * from './work.schema'
+export * from './volunteer.schema'
+export * from './education.schema'
+export * from './awards.schema'
+export * from './certificates.schema'
+export * from './publications.schema'
+export * from './skills.schema'
+export * from './languages.schema'
+export * from './interests.schema'
+export * from './references.schema'
+export * from './projects.schema'
 ```
 
-- [ ] **Step 4: Write `packages/shared/src/index.ts`**
+#### Step 14: Write `packages/shared/src/index.ts`
 
 ```ts
-export * from './resume.schema'
+export * from './resume'
 ```
 
-- [ ] **Step 5: Run tests, confirm pass**
+#### Step 15: Write tests `packages/shared/tests/resume.schema.spec.ts`
+
+```ts
+import { describe, it, expect } from 'vitest'
+import { ResumeSchema, type Resume } from '../src/resume'
+
+const minimalValid = {
+  basics: {
+    name: 'Amo Wu',
+    email: 'amowu@hahow.in',
+  },
+}
+
+const fullValid = {
+  $schema: 'https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json',
+  basics: {
+    name: 'Amo Wu',
+    label: 'Software Engineer',
+    email: 'amowu@hahow.in',
+    summary: 'Builder.',
+    location: { city: 'Taipei', countryCode: 'TW' },
+    profiles: [
+      { network: 'GitHub', url: 'https://github.com/amowu' },
+    ],
+  },
+  work: [
+    {
+      name: 'Hahow',
+      position: 'Software Engineer',
+      startDate: '2020-01',
+      highlights: ['Shipped X', 'Migrated Y'],
+    },
+  ],
+  education: [
+    {
+      institution: 'NTU',
+      area: 'CS',
+      studyType: 'Bachelor',
+      startDate: '2010-09',
+      endDate: '2014-06',
+    },
+  ],
+  skills: [
+    { name: 'Frontend', keywords: ['TypeScript', 'React'] },
+  ],
+  projects: [
+    {
+      name: 'amowu.com',
+      description: 'Personal site',
+      keywords: ['React', 'Phaser', 'CDK'],
+    },
+  ],
+}
+
+describe('ResumeSchema (JSON Resume v1)', () => {
+  it('accepts minimal valid (basics only)', () => {
+    expect(() => ResumeSchema.parse(minimalValid)).not.toThrow()
+  })
+
+  it('accepts full valid with many sections', () => {
+    expect(() => ResumeSchema.parse(fullValid)).not.toThrow()
+  })
+
+  it('defaults empty arrays for unfilled sections', () => {
+    const parsed: Resume = ResumeSchema.parse(minimalValid)
+    expect(parsed.work).toEqual([])
+    expect(parsed.education).toEqual([])
+    expect(parsed.awards).toEqual([])
+    expect(parsed.projects).toEqual([])
+  })
+
+  it('rejects missing basics.name', () => {
+    const noName = { basics: { email: 'a@b.c' } }
+    expect(() => ResumeSchema.parse(noName)).toThrow()
+  })
+
+  it('rejects invalid email', () => {
+    const badEmail = { basics: { name: 'X', email: 'not-an-email' } }
+    expect(() => ResumeSchema.parse(badEmail)).toThrow()
+  })
+
+  it('rejects work entry missing required fields', () => {
+    const badWork = {
+      basics: { name: 'X', email: 'a@b.c' },
+      work: [{ name: 'Co' }],     // missing position, startDate
+    }
+    expect(() => ResumeSchema.parse(badWork)).toThrow()
+  })
+
+  it('rejects profile with invalid url', () => {
+    const badProfile = {
+      basics: {
+        name: 'X',
+        email: 'a@b.c',
+        profiles: [{ network: 'GitHub', url: 'not-a-url' }],
+      },
+    }
+    expect(() => ResumeSchema.parse(badProfile)).toThrow()
+  })
+})
+```
+
+#### Step 16: Run tests, confirm pass
 
 ```bash
 npm run test -w @amowu/shared
 ```
-Expected: PASS (4 tests).
+Expected: PASS (7 tests).
 
-- [ ] **Step 6: Run typecheck**
+#### Step 17: Run typecheck
 
 ```bash
 npm run typecheck -w @amowu/shared
 ```
 Expected: no errors.
 
-- [ ] **Step 7: Commit**
+#### Step 18: Commit
 
 ```bash
-git add packages/shared/src/ packages/shared/tests/
-git commit -m "feat(shared): add ResumeSchema with Zod"
+git add packages/shared/
+git commit -m "feat(shared): port JSON Resume v1 schema to Zod (split per section)"
 ```
 
-> **Note**: Real resume data from the migration script may have additional fields (Phase 13). When that happens, update `ResumeSchema` and add corresponding tests. For now this skeleton schema is sufficient.
+> **Note:** When real resume data is pulled in Phase 13, it should already match this schema if the old DB stored JSON Resume format. If it doesn't, Phase 13 adds a transformer step.
 
 ---
 
@@ -982,7 +1285,7 @@ npm run test -w @amowu/api -- resume.entity
 ```
 Expected: FAIL — module does not exist.
 
-- [ ] **Step 3: Implement `apps/api/src/resume/resume.entity.ts`**
+- [ ] **Step 3: Implement `apps/api/src/resume/resume.entity.ts`** (JSON Resume v1 shape + DB internal fields)
 
 ```ts
 import { Entity } from 'electrodb'
@@ -993,23 +1296,188 @@ export function makeResumeEntity(opts: { client: DynamoDBClient; tableName: stri
     {
       model: { entity: 'resume', service: 'amowu', version: '1' },
       attributes: {
+        // DB key (JSON Resume has no id, we add one as primary key)
         id: { type: 'string', required: true },
-        name: { type: 'string', required: true },
-        email: { type: 'string', required: true },
-        experiences: {
+
+        // JSON Resume v1 sections — store as nested maps/lists
+        basics: {
+          type: 'map',
+          properties: {
+            name: { type: 'string', required: true },
+            label: { type: 'string' },
+            image: { type: 'string' },
+            email: { type: 'string', required: true },
+            phone: { type: 'string' },
+            url: { type: 'string' },
+            summary: { type: 'string' },
+            location: {
+              type: 'map',
+              properties: {
+                address: { type: 'string' },
+                postalCode: { type: 'string' },
+                city: { type: 'string' },
+                countryCode: { type: 'string' },
+                region: { type: 'string' },
+              },
+            },
+            profiles: {
+              type: 'list',
+              items: {
+                type: 'map',
+                properties: {
+                  network: { type: 'string', required: true },
+                  username: { type: 'string' },
+                  url: { type: 'string', required: true },
+                },
+              },
+            },
+          },
+        },
+        work: {
           type: 'list',
           items: {
             type: 'map',
             properties: {
-              company: { type: 'string', required: true },
-              title: { type: 'string', required: true },
+              name: { type: 'string', required: true },
+              position: { type: 'string', required: true },
+              url: { type: 'string' },
               startDate: { type: 'string', required: true },
               endDate: { type: 'string' },
-              description: { type: 'string' },
+              summary: { type: 'string' },
+              highlights: { type: 'list', items: { type: 'string' } },
+              location: { type: 'string' },
             },
           },
         },
-        skills: { type: 'list', items: { type: 'string' } },
+        volunteer: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              organization: { type: 'string', required: true },
+              position: { type: 'string', required: true },
+              url: { type: 'string' },
+              startDate: { type: 'string', required: true },
+              endDate: { type: 'string' },
+              summary: { type: 'string' },
+              highlights: { type: 'list', items: { type: 'string' } },
+            },
+          },
+        },
+        education: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              institution: { type: 'string', required: true },
+              url: { type: 'string' },
+              area: { type: 'string', required: true },
+              studyType: { type: 'string' },
+              startDate: { type: 'string', required: true },
+              endDate: { type: 'string' },
+              score: { type: 'string' },
+              courses: { type: 'list', items: { type: 'string' } },
+            },
+          },
+        },
+        awards: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              title: { type: 'string', required: true },
+              date: { type: 'string' },
+              awarder: { type: 'string' },
+              summary: { type: 'string' },
+            },
+          },
+        },
+        certificates: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              name: { type: 'string', required: true },
+              date: { type: 'string' },
+              issuer: { type: 'string' },
+              url: { type: 'string' },
+            },
+          },
+        },
+        publications: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              name: { type: 'string', required: true },
+              publisher: { type: 'string' },
+              releaseDate: { type: 'string' },
+              url: { type: 'string' },
+              summary: { type: 'string' },
+            },
+          },
+        },
+        skills: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              name: { type: 'string', required: true },
+              level: { type: 'string' },
+              keywords: { type: 'list', items: { type: 'string' } },
+            },
+          },
+        },
+        languages: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              language: { type: 'string', required: true },
+              fluency: { type: 'string' },
+            },
+          },
+        },
+        interests: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              name: { type: 'string', required: true },
+              keywords: { type: 'list', items: { type: 'string' } },
+            },
+          },
+        },
+        references: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              name: { type: 'string', required: true },
+              reference: { type: 'string', required: true },
+            },
+          },
+        },
+        projects: {
+          type: 'list',
+          items: {
+            type: 'map',
+            properties: {
+              name: { type: 'string', required: true },
+              description: { type: 'string' },
+              highlights: { type: 'list', items: { type: 'string' } },
+              keywords: { type: 'list', items: { type: 'string' } },
+              startDate: { type: 'string' },
+              endDate: { type: 'string' },
+              url: { type: 'string' },
+              roles: { type: 'list', items: { type: 'string' } },
+              entity: { type: 'string' },
+              type: { type: 'string' },
+            },
+          },
+        },
+
+        // DB-only fields (not exposed in API contract)
         version: { type: 'number', default: 1 },
         updatedAt: { type: 'string', default: () => new Date().toISOString() },
       },
@@ -1079,7 +1547,16 @@ describe('ResumeRepository', () => {
 
   it('findOne calls ElectroDB get with id', async () => {
     const spy = vi.spyOn(repo['entity'], 'get').mockReturnValue({
-      go: async () => ({ data: { id: 'amowu', name: 'A', email: 'a@b.c', experiences: [], skills: [] } }),
+      go: async () => ({
+        data: {
+          id: 'amowu',
+          basics: { name: 'A', email: 'a@b.c', profiles: [] },
+          work: [],
+          education: [],
+          skills: [],
+          projects: [],
+        },
+      }),
     } as never)
     const result = await repo.findOne('amowu')
     expect(spy).toHaveBeenCalledWith({ id: 'amowu' })
@@ -1177,24 +1654,28 @@ describe('ResumeService', () => {
     service = moduleRef.get(ResumeService)
   })
 
-  it('maps DB shape to API contract', async () => {
+  it('maps DB shape to JSON Resume API contract (strips id/version/updatedAt)', async () => {
     repo.findOne.mockResolvedValue({
-      id: 'amowu',
-      name: 'Amo',
-      email: 'a@b.c',
-      experiences: [],
+      id: 'amowu',                              // DB-only key
+      version: 1,                                // DB-only field
+      updatedAt: '2026-05-30T00:00:00.000Z',     // DB-only field
+      basics: { name: 'Amo', email: 'a@b.c', profiles: [] },
+      work: [],
+      volunteer: [],
+      education: [],
+      awards: [],
+      certificates: [],
+      publications: [],
       skills: [],
-      version: 1,                  // DB-only field
-      updatedAt: '2026-05-30',     // DB-only field
+      languages: [],
+      interests: [],
+      references: [],
+      projects: [],
     })
     const result = await service.findOne('amowu')
-    expect(result).toEqual({
-      id: 'amowu',
-      name: 'Amo',
-      email: 'a@b.c',
-      experiences: [],
-      skills: [],
-    })
+    expect(result.basics.name).toBe('Amo')
+    expect(result.work).toEqual([])
+    expect(result).not.toHaveProperty('id')
     expect(result).not.toHaveProperty('version')
     expect(result).not.toHaveProperty('updatedAt')
   })
@@ -1207,10 +1688,8 @@ describe('ResumeService', () => {
   it('validates DB data against ResumeSchema (rejects malformed email)', async () => {
     repo.findOne.mockResolvedValue({
       id: 'amowu',
-      name: 'Amo',
-      email: 'not-an-email',
-      experiences: [],
-      skills: [],
+      basics: { name: 'Amo', email: 'not-an-email', profiles: [] },
+      work: [], education: [], skills: [], projects: [],
     })
     await expect(service.findOne('amowu')).rejects.toThrow()
   })
@@ -1240,13 +1719,9 @@ export class ResumeService {
   async findOne(id: string): Promise<Resume> {
     const item = await this.repo.findOne(id)
     if (!item) throw new NotFoundException(`Resume ${id} not found`)
-    return ResumeSchema.parse({
-      id: item.id,
-      name: item.name,
-      email: item.email,
-      experiences: item.experiences,
-      skills: item.skills,
-    })
+    // Strip DB-only fields; everything else is already JSON Resume shape
+    const { id: _id, version: _v, updatedAt: _u, ...resume } = item
+    return ResumeSchema.parse(resume)
   }
 }
 ```
@@ -1347,23 +1822,34 @@ git commit -m "feat(api): wire ResumeModule into app"
 - Create: `apps/api/scripts/seed-local-ddb.ts`
 - Create: `apps/api/seeds/resume.json` (placeholder sample data)
 
-- [ ] **Step 1: Write `apps/api/seeds/resume.json`** (placeholder; real data comes in Phase 13)
+- [ ] **Step 1: Write `apps/api/seeds/resume.json`** (placeholder in JSON Resume v1 format; real data comes in Phase 13)
 
 ```json
 [
   {
     "id": "amowu",
-    "name": "Amo Wu",
-    "email": "amowu@hahow.in",
-    "experiences": [
+    "basics": {
+      "name": "Amo Wu",
+      "label": "Software Engineer",
+      "email": "amowu@hahow.in",
+      "summary": "Placeholder; replaced by real data in Phase 13.",
+      "profiles": [
+        { "network": "GitHub", "url": "https://github.com/amowu" }
+      ]
+    },
+    "work": [
       {
-        "company": "Hahow",
-        "title": "Software Engineer",
+        "name": "Hahow",
+        "position": "Software Engineer",
         "startDate": "2020-01",
-        "description": "Placeholder; replaced by real data in Phase 13."
+        "highlights": ["Placeholder."]
       }
     ],
-    "skills": ["TypeScript", "React", "AWS"]
+    "education": [],
+    "skills": [
+      { "name": "Frontend", "keywords": ["TypeScript", "React"] }
+    ],
+    "projects": []
   }
 ]
 ```
@@ -2166,73 +2652,215 @@ git add apps/web/src/lib/ apps/web/src/features/resume/ apps/web/tests/ apps/web
 git commit -m "feat(web): add API client + useResume hook"
 ```
 
-### Task 7.2: ResumePage + ResumeCard
+### Task 7.2: ResumePage + section components (JSON Resume aware)
+
+**Why split:** JSON Resume has 12 sections. We render each as an independent component, conditionally based on whether data exists (`if (resume.work.length) <WorkSection />`). This matches both the schema structure and the future CRUD admin pattern (one section = one form area).
 
 **Files:**
 - Create: `apps/web/src/features/resume/ResumePage.tsx`
-- Create: `apps/web/src/features/resume/ResumeCard.tsx`
+- Create: `apps/web/src/features/resume/sections/BasicsSection.tsx`
+- Create: `apps/web/src/features/resume/sections/WorkSection.tsx`
+- Create: `apps/web/src/features/resume/sections/EducationSection.tsx`
+- Create: `apps/web/src/features/resume/sections/SkillsSection.tsx`
+- Create: `apps/web/src/features/resume/sections/ProjectsSection.tsx`
 - Modify: `apps/web/src/routes/resume.tsx`
 
-- [ ] **Step 1: Write `apps/web/src/features/resume/ResumeCard.tsx`**
+> **Scope of this task:** Render the 5 most likely populated sections (basics, work, education, skills, projects). Volunteer / awards / certificates / publications / languages / interests / references — add later as a separate task when you start filling them in (the schema already supports them; you just need a new `<XxxSection />` file + import in ResumePage).
+
+- [ ] **Step 1: Write `apps/web/src/features/resume/sections/BasicsSection.tsx`**
 
 ```tsx
-import type { Resume } from '@amowu/shared'
 import { Card } from 'animal-island-ui'
+import type { Basics } from '@amowu/shared'
 
-export function ResumeCard({ resume }: { resume: Resume }) {
+export function BasicsSection({ basics }: { basics: Basics }) {
   return (
     <Card color="app-cream">
-      <h1 className="text-2xl font-bold mb-2">{resume.name}</h1>
-      <p className="text-sm mb-4">{resume.email}</p>
-
-      <h2 className="text-lg font-bold mt-4 mb-2">Experiences</h2>
-      <ul className="space-y-2">
-        {resume.experiences.map((exp, i) => (
-          <li key={i} className="border-l-2 border-amber-400 pl-3">
-            <div className="font-semibold">{exp.title} @ {exp.company}</div>
-            <div className="text-xs text-gray-600">
-              {exp.startDate}{exp.endDate ? ` – ${exp.endDate}` : ''}
-            </div>
-            {exp.description && <p className="text-sm mt-1">{exp.description}</p>}
-          </li>
-        ))}
-      </ul>
-
-      <h2 className="text-lg font-bold mt-4 mb-2">Skills</h2>
-      <div className="flex flex-wrap gap-2">
-        {resume.skills.map((s) => (
-          <span key={s} className="px-2 py-1 bg-amber-100 rounded text-sm">{s}</span>
-        ))}
-      </div>
+      <h1 className="text-3xl font-bold">{basics.name}</h1>
+      {basics.label && <p className="text-lg text-gray-700">{basics.label}</p>}
+      <p className="text-sm mt-2">
+        <a href={`mailto:${basics.email}`}>{basics.email}</a>
+        {basics.phone && <> · {basics.phone}</>}
+        {basics.url && <> · <a href={basics.url}>{basics.url}</a></>}
+      </p>
+      {basics.summary && <p className="mt-3">{basics.summary}</p>}
+      {basics.profiles.length > 0 && (
+        <ul className="mt-3 flex flex-wrap gap-3 text-sm">
+          {basics.profiles.map((p) => (
+            <li key={p.network}>
+              <a href={p.url}>{p.network}</a>
+            </li>
+          ))}
+        </ul>
+      )}
     </Card>
   )
 }
 ```
 
-> Card prop `color="app-cream"` is a guess based on animal-island-ui README — verify against actual API once installed. If different, adjust.
+- [ ] **Step 2: Write `apps/web/src/features/resume/sections/WorkSection.tsx`**
 
-- [ ] **Step 2: Write `apps/web/src/features/resume/ResumePage.tsx`**
+```tsx
+import { Card } from 'animal-island-ui'
+import type { Work } from '@amowu/shared'
+
+export function WorkSection({ work }: { work: Work[] }) {
+  return (
+    <Card color="app-blue">
+      <h2 className="text-xl font-bold mb-3">Work</h2>
+      <ul className="space-y-4">
+        {work.map((w, i) => (
+          <li key={i} className="border-l-2 border-blue-400 pl-3">
+            <div className="font-semibold">{w.position} @ {w.name}</div>
+            <div className="text-xs text-gray-600">
+              {w.startDate}{w.endDate ? ` – ${w.endDate}` : ' – present'}
+              {w.location && <> · {w.location}</>}
+            </div>
+            {w.summary && <p className="text-sm mt-1">{w.summary}</p>}
+            {w.highlights.length > 0 && (
+              <ul className="list-disc list-inside text-sm mt-1">
+                {w.highlights.map((h, j) => <li key={j}>{h}</li>)}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </Card>
+  )
+}
+```
+
+- [ ] **Step 3: Write `apps/web/src/features/resume/sections/EducationSection.tsx`**
+
+```tsx
+import { Card } from 'animal-island-ui'
+import type { Education } from '@amowu/shared'
+
+export function EducationSection({ education }: { education: Education[] }) {
+  return (
+    <Card color="app-cream">
+      <h2 className="text-xl font-bold mb-3">Education</h2>
+      <ul className="space-y-3">
+        {education.map((e, i) => (
+          <li key={i} className="border-l-2 border-amber-400 pl-3">
+            <div className="font-semibold">
+              {e.studyType ? `${e.studyType} of ` : ''}{e.area}
+            </div>
+            <div className="text-sm">{e.institution}</div>
+            <div className="text-xs text-gray-600">
+              {e.startDate}{e.endDate ? ` – ${e.endDate}` : ''}
+              {e.score && <> · GPA {e.score}</>}
+            </div>
+            {e.courses.length > 0 && (
+              <div className="text-sm mt-1">Courses: {e.courses.join(', ')}</div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </Card>
+  )
+}
+```
+
+- [ ] **Step 4: Write `apps/web/src/features/resume/sections/SkillsSection.tsx`**
+
+```tsx
+import { Card } from 'animal-island-ui'
+import type { Skill } from '@amowu/shared'
+
+export function SkillsSection({ skills }: { skills: Skill[] }) {
+  return (
+    <Card color="app-green">
+      <h2 className="text-xl font-bold mb-3">Skills</h2>
+      <ul className="space-y-2">
+        {skills.map((s, i) => (
+          <li key={i}>
+            <div className="font-semibold">
+              {s.name}
+              {s.level && <span className="ml-2 text-xs text-gray-600">({s.level})</span>}
+            </div>
+            {s.keywords.length > 0 && (
+              <div className="mt-1 flex flex-wrap gap-1">
+                {s.keywords.map((k) => (
+                  <span key={k} className="px-2 py-0.5 bg-green-100 rounded text-xs">{k}</span>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </Card>
+  )
+}
+```
+
+- [ ] **Step 5: Write `apps/web/src/features/resume/sections/ProjectsSection.tsx`**
+
+```tsx
+import { Card } from 'animal-island-ui'
+import type { Project } from '@amowu/shared'
+
+export function ProjectsSection({ projects }: { projects: Project[] }) {
+  return (
+    <Card color="app-cream">
+      <h2 className="text-xl font-bold mb-3">Projects</h2>
+      <ul className="space-y-3">
+        {projects.map((p, i) => (
+          <li key={i} className="border-l-2 border-amber-400 pl-3">
+            <div className="font-semibold">
+              {p.url ? <a href={p.url}>{p.name}</a> : p.name}
+            </div>
+            {p.description && <p className="text-sm">{p.description}</p>}
+            {p.keywords.length > 0 && (
+              <div className="mt-1 flex flex-wrap gap-1">
+                {p.keywords.map((k) => (
+                  <span key={k} className="px-1.5 py-0.5 bg-amber-100 rounded text-xs">{k}</span>
+                ))}
+              </div>
+            )}
+            {p.highlights.length > 0 && (
+              <ul className="list-disc list-inside text-sm mt-1">
+                {p.highlights.map((h, j) => <li key={j}>{h}</li>)}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </Card>
+  )
+}
+```
+
+- [ ] **Step 6: Write `apps/web/src/features/resume/ResumePage.tsx`** (conditional rendering)
 
 ```tsx
 import { useResume } from './useResume'
-import { ResumeCard } from './ResumeCard'
+import { BasicsSection } from './sections/BasicsSection'
+import { WorkSection } from './sections/WorkSection'
+import { EducationSection } from './sections/EducationSection'
+import { SkillsSection } from './sections/SkillsSection'
+import { ProjectsSection } from './sections/ProjectsSection'
 
 export function ResumePage() {
-  const { data, isLoading, isError, error } = useResume()
+  const { data: resume, isLoading, isError, error } = useResume()
 
   if (isLoading) return <div className="p-8">Loading...</div>
   if (isError) return <div className="p-8 text-red-700">Error: {String(error)}</div>
-  if (!data) return null
+  if (!resume) return null
 
   return (
-    <div className="m-8 max-w-2xl">
-      <ResumeCard resume={data} />
+    <div className="m-8 max-w-2xl space-y-4 overflow-y-auto max-h-screen">
+      <BasicsSection basics={resume.basics} />
+      {resume.work.length > 0 && <WorkSection work={resume.work} />}
+      {resume.education.length > 0 && <EducationSection education={resume.education} />}
+      {resume.skills.length > 0 && <SkillsSection skills={resume.skills} />}
+      {resume.projects.length > 0 && <ProjectsSection projects={resume.projects} />}
     </div>
   )
 }
 ```
 
-- [ ] **Step 3: Update `apps/web/src/routes/resume.tsx`**
+- [ ] **Step 7: Update `apps/web/src/routes/resume.tsx`**
 
 ```tsx
 import { createFileRoute } from '@tanstack/react-router'
@@ -2243,7 +2871,7 @@ export const Route = createFileRoute('/resume')({
 })
 ```
 
-- [ ] **Step 4: End-to-end smoke test (API + web together)**
+- [ ] **Step 8: End-to-end smoke test (API + web together)**
 
 In two terminals:
 ```bash
@@ -2259,13 +2887,15 @@ PORT=8080 AWS_REGION=us-east-1 DDB_TABLE_NAME=resume-local \
 npm run dev -w @amowu/web
 ```
 
-Open `http://localhost:5173/resume` in a browser. Expected: ResumeCard renders with placeholder data from seed.
+Open `http://localhost:5173/resume` in a browser. Expected: BasicsSection + WorkSection + SkillsSection render from JSON Resume seed; Education + Projects sections skip (empty arrays in seed).
 
-- [ ] **Step 5: Commit**
+> Card prop `color` values (`app-cream`, `app-blue`, `app-green`) are best guesses from animal-island-ui README. Verify against actual API; adjust if names differ.
+
+- [ ] **Step 9: Commit**
 
 ```bash
 git add apps/web/src/features/resume/ apps/web/src/routes/resume.tsx
-git commit -m "feat(web): add ResumePage + ResumeCard"
+git commit -m "feat(web): add ResumePage with JSON Resume section components"
 ```
 
 ---
@@ -3623,41 +4253,113 @@ main().catch((e) => {
 AWS_PROFILE=<your-profile> OLD_TABLE_NAME=<old-table> npx tsx scripts/migrate-resume-data.ts
 ```
 
-- [ ] **Step 3: Inspect output, sanity-check fields**
+This writes the **raw** old data shape to `apps/api/seeds/resume.json`. It is **not yet** JSON Resume format.
+
+- [ ] **Step 3: Inspect output, compare against JSON Resume v1 shape**
 
 ```bash
 cat apps/api/seeds/resume.json | jq .
 ```
 
-- [ ] **Step 4: If fields don't match `ResumeSchema`, update the schema (and re-run shared tests)**
+Look at the field structure. Three possibilities:
 
-E.g., real data has additional fields not in placeholder schema. Update `packages/shared/src/resume.schema.ts` to add them, then re-run:
+- **A. Already JSON Resume v1**: old DB happens to use the same shape (basics / work / education / ...). Skip Step 4, proceed to Step 5.
+- **B. Different shape but mappable**: old DB uses `name` / `experiences` / etc. directly. Need a one-time transformer (Step 4).
+- **C. Completely different**: old DB stores arbitrary blobs. Refactor manually to JSON Resume (treat the raw dump as reference, hand-write the new file).
 
-```bash
-npm run test -w @amowu/shared
+- [ ] **Step 4 (if needed): Write a transformer `scripts/transform-to-json-resume.ts`**
+
+If old data needs mapping, write a script to read the raw dump and emit JSON Resume v1:
+
+```ts
+import { readFile, writeFile } from 'node:fs/promises'
+import { ResumeSchema, type Resume } from '../packages/shared/src/resume/index'
+
+type OldShape = {
+  id: string
+  name: string
+  email: string
+  // ... other old fields, mirror what you found in Step 3
+  experiences?: Array<{ company: string; title: string; startDate: string; endDate?: string; description?: string }>
+  skills?: string[]
+}
+
+function transform(old: OldShape): Resume & { id: string } {
+  return {
+    id: old.id,
+    basics: {
+      name: old.name,
+      email: old.email,
+      profiles: [],
+    },
+    work: (old.experiences ?? []).map((e) => ({
+      name: e.company,
+      position: e.title,
+      startDate: e.startDate,
+      endDate: e.endDate,
+      summary: e.description,
+      highlights: [],
+    })),
+    volunteer: [],
+    education: [],
+    awards: [],
+    certificates: [],
+    publications: [],
+    skills: (old.skills ?? []).map((name) => ({ name, keywords: [] })),
+    languages: [],
+    interests: [],
+    references: [],
+    projects: [],
+  }
+}
+
+async function main() {
+  const raw = await readFile('apps/api/seeds/resume.json', 'utf-8')
+  const oldItems: OldShape[] = JSON.parse(raw)
+  const transformed = oldItems.map(transform)
+  // Validate
+  for (const item of transformed) {
+    const { id, ...rest } = item
+    ResumeSchema.parse(rest)
+  }
+  await writeFile('apps/api/seeds/resume.json', JSON.stringify(transformed, null, 2))
+  console.log(`Transformed ${transformed.length} resumes to JSON Resume v1`)
+}
+
+main().catch((e) => { console.error(e); process.exit(1) })
 ```
 
-- [ ] **Step 5: Validate seed against schema** (write a tiny ad-hoc check)
+Adapt the `OldShape` type and `transform()` body to your actual data. Run:
 
 ```bash
-node -e "
-const { ResumeSchema } = require('./packages/shared/src/resume.schema.ts');
-const data = require('./apps/api/seeds/resume.json');
-data.forEach((r) => ResumeSchema.parse(r));
-console.log('All', data.length, 'resumes valid');
+npx tsx scripts/transform-to-json-resume.ts
+```
+
+- [ ] **Step 5: Validate final seed against `ResumeSchema`**
+
+```bash
+npx tsx -e "
+import { ResumeSchema } from './packages/shared/src/resume/index'
+import { readFileSync } from 'node:fs'
+const data = JSON.parse(readFileSync('apps/api/seeds/resume.json', 'utf-8'))
+for (const r of data) {
+  const { id, ...rest } = r
+  ResumeSchema.parse(rest)
+}
+console.log('All', data.length, 'resumes valid against ResumeSchema')
 "
 ```
 
-> Adjust if your ts compilation requires `tsx` instead of `node`.
+Expected: "All N resumes valid against ResumeSchema".
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add scripts/migrate-resume-data.ts apps/api/seeds/resume.json packages/shared/
-git commit -m "chore: migrate resume data from old DynamoDB"
+git add scripts/migrate-resume-data.ts scripts/transform-to-json-resume.ts apps/api/seeds/resume.json
+git commit -m "chore: migrate resume data from old DynamoDB to JSON Resume format"
 ```
 
-> If resume contains PII you don't want in git history, `.gitignore` `apps/api/seeds/resume.json` and store it locally + push to prod table directly in Task 13.2.
+> **PII / sensitive data**: if resume contains info you don't want in git history (phone, address), `.gitignore` `apps/api/seeds/resume.json` instead and keep it locally; Task 13.2's `seed-prod-ddb.ts` will read your local file and push directly to prod table.
 
 ### Task 13.2: Production seed script
 

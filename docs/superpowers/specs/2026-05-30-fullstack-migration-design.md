@@ -21,6 +21,7 @@
 | Backend framework | Serverless Framework 0.5.6 + 裸 Lambda handler | NestJS + Lambda Web Adapter (Docker) |
 | Infrastructure | Serverless Framework | AWS CDK v2 (TypeScript) |
 | Database | DynamoDB（保留） | DynamoDB（重建 + 資料遷移） |
+| Resume 資料結構 | 自訂扁平 schema | [JSON Resume v1](https://jsonresume.org/schema/) 標準（Zod port、拆檔） |
 | CI/CD | CircleCI | GitHub Actions + OIDC |
 | Node | 4.3 | 22 LTS |
 | Package manager | npm 2.x（隱含） | npm 10+ workspaces |
@@ -36,6 +37,7 @@
 - **UI/UX 視覺可重新設計**：Semantic UI 換成 animal-island-ui（動森風），跟既有 Phaser RPG 風格更搭
 - **CDK 不接管既有 Route53 zone、ACM cert**：用 `fromLookup` / `fromCertificateArn` 引用，避免動到 DNS / cert
 - **既有 DynamoDB / S3 / CloudFront 不 import 進 CDK**：全新建 + DNS 切換 + 一個月後手動刪舊
+- **Resume schema 採用 JSON Resume v1 標準**：公開、穩定、配合未來 CRUD admin 一次到位（schema → form 一對一）
 
 ---
 
@@ -291,7 +293,7 @@ async function bootstrap() {
 - **兩者刻意分開**，未來 DB shape 變化不會自動 leak 到 API
 - 中間用 `service.findOne()` 做投射 + Zod parse 驗證
 
-**ElectroDB Entity 範例：**
+**ElectroDB Entity 範例（JSON Resume 結構 + DB 內部欄位）：**
 
 ```ts
 // apps/api/src/resume/resume.entity.ts
@@ -300,17 +302,25 @@ import { Entity } from 'electrodb'
 export const ResumeEntity = new Entity({
   model: { entity: 'resume', service: 'amowu', version: '1' },
   attributes: {
+    // 識別欄位（JSON Resume 沒有 id，DB 加上去當 key）
     id: { type: 'string', required: true },
-    name: { type: 'string', required: true },
-    email: { type: 'string', required: true },
-    experiences: { type: 'list', items: { type: 'map', properties: {
-      company: { type: 'string', required: true },
-      title: { type: 'string', required: true },
-      startDate: { type: 'string', required: true },
-      description: { type: 'string' },
-    }}},
-    skills: { type: 'list', items: { type: 'string' }},
-    version: { type: 'number', default: 1 },
+
+    // JSON Resume v1 top-level sections（用 map / list 對應）
+    basics:        { type: 'map',  properties: { /* name/email/profiles/location/... */ } },
+    work:          { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    volunteer:     { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    education:     { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    awards:        { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    certificates:  { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    publications:  { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    skills:        { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    languages:     { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    interests:     { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    references:    { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+    projects:      { type: 'list', items: { type: 'map', properties: { /* ... */ } } },
+
+    // DB 內部欄位（不外洩到 API contract）
+    version:   { type: 'number', default: 1 },
     updatedAt: { type: 'string', default: () => new Date().toISOString() },
   },
   indexes: {
@@ -322,7 +332,9 @@ export const ResumeEntity = new Entity({
 }, { table: process.env.DDB_TABLE_NAME!, client: ddbClient })
 ```
 
-**Service 層投射：**
+> 每個 section 的 nested `properties` 對應到 `packages/shared` 對應的 Zod schema 欄位。詳細欄位列表寫在 plan Phase 3 Task 3.4。
+
+**Service 層投射（DB shape → JSON Resume API contract）：**
 
 ```ts
 // apps/api/src/resume/resume.service.ts
@@ -335,14 +347,9 @@ export class ResumeService {
   async findOne(id: string): Promise<Resume> {
     const item = await this.repo.findOne(id)
     if (!item) throw new NotFoundException()
-    return ResumeSchema.parse({
-      id: item.id,
-      name: item.name,
-      email: item.email,
-      experiences: item.experiences,
-      skills: item.skills,
-      // 不傳 version、updatedAt（DB 內部細節）
-    })
+    // 移除 DB 內部欄位（id、version、updatedAt），其餘 JSON Resume sections 直接帶
+    const { id: _, version: __, updatedAt: ___, ...resume } = item
+    return ResumeSchema.parse(resume)
   }
 }
 ```
@@ -413,22 +420,62 @@ volumes:
 
 ## 5. Shared Package (`packages/shared/`)
 
+### 5.1 結構
+
+採用 **[JSON Resume v1 schema](https://jsonresume.org/schema/)** 作為履歷資料結構標準，port 成 Zod，**每個 top-level section 拆獨立檔案**：
+
 ```
 packages/shared/
-├── package.json                 # name: @amowu/shared
+├── package.json
 ├── tsconfig.json
 └── src/
-    ├── index.ts
-    └── resume.schema.ts         # ResumeSchema (Zod) + type Resume = z.infer<...>
+    ├── index.ts                    # 組合 + 統一 export
+    └── resume/
+        ├── index.ts                # 組成 ResumeSchema、export type Resume
+        ├── basics.schema.ts        # basics + Location + Profile
+        ├── work.schema.ts
+        ├── volunteer.schema.ts
+        ├── education.schema.ts
+        ├── awards.schema.ts
+        ├── certificates.schema.ts
+        ├── publications.schema.ts
+        ├── skills.schema.ts
+        ├── languages.schema.ts
+        ├── interests.schema.ts
+        ├── references.schema.ts
+        └── projects.schema.ts
 ```
 
-純 TS package，no build step（直接 source import 或最簡 `tsc` build）。Web 與 API 都 import：
+### 5.2 為什麼採用 JSON Resume + 拆檔
+
+- **公開穩定標準**：JSON Resume v1 是 community 維護多年的開放標準，schema 設計問題已被妥善解決
+- **配合未來 CRUD 後台**：後台用 `React Hook Form + zodResolver` 直接生表單；schema 完整 → 表單就完整，不必後續反覆迭代
+- **可移植性**：資料本身就是 jsonresume.org 接受的格式，未來想用其上 theme 或免費 host 零成本
+- **拆檔好處**：每個 section ~30-40 行、獨立可讀；未來後台 1 個 section 對 1 個 form component，邊界清楚
+
+### 5.3 使用方式
 
 ```ts
-import { ResumeSchema, type Resume } from '@amowu/shared'
+// 前後端共用
+import {
+  ResumeSchema,
+  type Resume,
+  type Basics,
+  type Work,
+  type Education,
+  type Skill,
+  type Project,
+} from '@amowu/shared'
+
+const resume = ResumeSchema.parse(data)
 ```
 
-未來可擴增 `dialogue.schema.ts`、`api-contract.ts` 等。需要對外暴露 OpenAPI 時用 `@asteasolutions/zod-to-openapi` 從 Zod 生成。
+### 5.4 設計細節
+
+- **Schema 完整但資料可空**：每個 array section 用 `.default([])`，沒填的 section（如 `awards`、`publications`）讀進來永遠是 `[]`，UI 可直接 `if (resume.awards.length) ...`
+- **No build step**：純 TS source，apps/api 跟 apps/web 各自 compile（path alias 引用 source `.ts`）
+- **OpenAPI 衍生（未來）**：需對外公開 API 時用 `@asteasolutions/zod-to-openapi` 從 Zod 生成
+- **Dialogue schema（未來）**：之後可在 `src/dialogue/` 加同樣風格的 schema
 
 ---
 
@@ -690,6 +737,7 @@ await writeFile('apps/api/seeds/resume.json', JSON.stringify(items, null, 2))
 - Performance budget、SEO 強化、PWA
 - 多語系 i18n（目前單一語言）
 - 多環境（staging / preview environments）
+- **Resume CRUD admin 後台**：JSON Resume schema 此次先採用、為未來 admin 鋪路；admin UI 本身在獨立 spec 處理
 
 ---
 
