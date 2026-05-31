@@ -1,0 +1,27 @@
+[
+  {
+    "id": "amowu",
+    "basics": {
+      "name": "Amo Wu",
+      "label": "Software Engineer",
+      "email": "amowu@hahow.in",
+      "summary": "Placeholder; replaced by real data in Phase 13.",
+      "profiles": [
+        { "network": "GitHub", "url": "https://github.com/amowu" }
+      ]
+    },
+    "work": [
+      {
+        "name": "Hahow",
+        "position": "Software Engineer",
+        "startDate": "2020-01",
+        "highlights": ["Placeholder."]
+      }
+    ],
+    "education": [],
+    "skills": [
+      { "name": "Frontend", "keywords": ["TypeScript", "React"] }
+    ],
+    "projects": []
+  }
+]
