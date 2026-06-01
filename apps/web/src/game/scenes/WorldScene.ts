@@ -30,6 +30,7 @@ export class WorldScene extends Phaser.Scene {
   private player!: Phaser.GameObjects.Sprite
   private easystar!: EasyStar.js
   private map!: Phaser.Tilemaps.Tilemap
+  private marker!: Phaser.GameObjects.Graphics
   private currentAnim: string = 'idle_down'
   private walkChain: Phaser.Tweens.Tween[] = []
   private paused = false
@@ -85,6 +86,12 @@ export class WorldScene extends Phaser.Scene {
     this.createPlayerAnim('idle_up', [25, 26], 2, true)
     this.createPlayerAnim('walk_down', [35, 36, 37, 38], 8, true)
     this.createPlayerAnim('idle_down', [40, 41], 2, true)
+
+    // Mouse hover tile marker (red outline, follows pointer in update())
+    this.marker = this.add.graphics()
+    this.marker.lineStyle(2, 0xff0000, 1)
+    this.marker.strokeRect(0, 0, T, T)
+    this.marker.setDepth(20)
 
     // Player spawn at tile (12, 16)
     const spawnX = 12 * T + T / 2
@@ -142,6 +149,13 @@ export class WorldScene extends Phaser.Scene {
     // Signal scene ready for React side
     EventBus.emit('current-scene-ready', this)
     EventBus.emit('scene:ready', this)
+  }
+
+  update() {
+    const T = WORLD_BOUNDS.tile
+    const pointer = this.input.activePointer
+    this.marker.x = Math.floor(pointer.worldX / T) * T
+    this.marker.y = Math.floor(pointer.worldY / T) * T
   }
 
   private createPlayerAnim(key: string, frames: number[], frameRate: number, repeat: boolean) {
