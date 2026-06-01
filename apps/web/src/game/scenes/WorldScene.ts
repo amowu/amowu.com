@@ -55,16 +55,15 @@ export class WorldScene extends Phaser.Scene {
     }
 
     // Pathfinding — build grid from collision layer 'c'
+    // Read layer data directly (the 'c' layer isn't rendered via createLayer)
     const collisionLayerData = this.map.getLayer('c')
     const grid: number[][] = []
     if (collisionLayerData) {
       for (let y = 0; y < this.map.height; y++) {
         const row: number[] = []
         for (let x = 0; x < this.map.width; x++) {
-          const tile = collisionLayerData.tilemapLayer
-            ? this.map.getTileAt(x, y, true, 'c')
-            : null
-          row.push(tile ? tile.index : 0)
+          const tile = collisionLayerData.data[y]?.[x]
+          row.push(tile && tile.index >= 0 ? tile.index : 0)
         }
         grid.push(row)
       }
