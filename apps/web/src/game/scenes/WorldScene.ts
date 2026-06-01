@@ -122,9 +122,12 @@ export class WorldScene extends Phaser.Scene {
 
       sprite.on('pointerdown', (pointer: Phaser.Input.Pointer, _x: number, _y: number, event: Phaser.Types.Input.EventData) => {
         event.stopPropagation()
-        this.movePlayerToTile(npc.tileX, npc.tileY, () => {
-          EventBus.emit('dialogue:open', npc.dialogueId)
-        })
+        this.movePlayerToTile(
+          npc.tileX,
+          npc.tileY,
+          () => EventBus.emit('dialogue:open', npc.dialogueId),
+          true, // stop one tile before NPC (don't overlap)
+        )
       })
     }
 
@@ -185,7 +188,12 @@ export class WorldScene extends Phaser.Scene {
     this.walkChain = []
   }
 
-  private movePlayerToTile(tileX: number, tileY: number, onArrive?: () => void) {
+  private movePlayerToTile(
+    tileX: number,
+    tileY: number,
+    onArrive?: () => void,
+    stopBeforeTarget = false,
+  ) {
     const T = WORLD_BOUNDS.tile
     const playerTileX = Math.floor(this.player.x / T)
     const playerTileY = Math.floor(this.player.y / T)
@@ -197,7 +205,9 @@ export class WorldScene extends Phaser.Scene {
         this.playIdleFromCurrent()
         return
       }
-      const targets = path.slice(1).map((p) => ({
+      // skip the start tile; when stopBeforeTarget, also skip the destination
+      const sliceEnd = stopBeforeTarget ? -1 : undefined
+      const targets = path.slice(1, sliceEnd).map((p) => ({
         x: p.x * T + T / 2,
         y: p.y * T + T / 2,
       }))
