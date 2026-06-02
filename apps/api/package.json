@@ -5,7 +5,7 @@
   "scripts": {
     "prebuild": "npm run build -w @amowu/shared",
     "build": "nest build",
-    "predev": "docker compose -f ../../docker-compose.yml up -d dynamodb && npm run ddb:reset",
+    "predev": "npm run build -w @amowu/shared && docker compose -f ../../docker-compose.yml up -d dynamodb && npm run ddb:reset",
     "dev": "DDB_ENDPOINT=http://localhost:8000 AWS_ACCESS_KEY_ID=local AWS_SECRET_ACCESS_KEY=local nest start --watch",
     "start": "node dist/main.js",
     "lint": "eslint src --ext .ts",

@@ -11,7 +11,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@amowu/shared": ["../../packages/shared/dist/index.d.ts"]
+      "@amowu/shared": ["../../packages/shared/src/index.ts"]
     }
   },
   "include": ["src", "tests"],
