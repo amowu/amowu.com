@@ -42,6 +42,7 @@ export class WorldScene extends Phaser.Scene {
   create() {
     const { tile: T, size } = WORLD_BOUNDS
     this.cameras.main.setBounds(0, 0, size, size)
+    this.cameras.main.setZoom(3) // match old game's SCALE_RATIO=3 zoom
     this.physics.world.setBounds(0, 0, size, size)
 
     // Build tilemap — old map has layers: layer0..layer4 (visual), 'c' (collision), 'entities'
