@@ -25,3 +25,6 @@ dynamodb-data/
 
 # TanStack Router (auto-generated)
 **/routeTree.gen.ts
+
+# TypeScript incremental build cache
+**/*.tsbuildinfo
