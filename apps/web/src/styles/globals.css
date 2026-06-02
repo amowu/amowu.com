@@ -8,6 +8,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Override animal-island-ui's CSS variable so all its components
+   pick Noto Sans TC for CJK instead of SC.
+   The library declares this var with !important, so we must too. */
+:root {
+  --animal-font-family: 'Nunito', 'Noto Sans TC', 'Zen Maru Gothic', -apple-system, 'PingFang SC', 'Hiragino Sans TC', 'Microsoft YaHei', sans-serif !important;
+}
+
 body,
 button,
 input,
