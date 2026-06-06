@@ -29,3 +29,38 @@ body,
   height: 100%;
   margin: 0;
 }
+
+/* animal-island-ui's <Modal> hard-wraps its content in <Cursor forceAll>,
+   forcing a game-style finger cursor over the whole dialogue. Modal exposes
+   no prop to turn it off, so neutralize the custom cursor here and restore
+   the OS defaults: plain arrow for content, pointer for interactive elements.
+   Selectors come after the @import, so !important + source order/specificity win. */
+.animal-cursor,
+.animal-cursor--force,
+.animal-cursor--force *,
+.animal-cursor.animal-cursor--scoped {
+  cursor: auto !important;
+}
+
+/* System pointer on interactive elements (and their inner nodes). Specificity
+   (0,1,1)+ beats the .animal-cursor--force * reset above (0,1,0). */
+.animal-cursor a[href],
+.animal-cursor a[href] *,
+.animal-cursor button,
+.animal-cursor button *,
+.animal-cursor [role='button'],
+.animal-cursor [role='button'] *,
+.animal-cursor [role='link'],
+.animal-cursor label[for],
+.animal-cursor select,
+.animal-cursor summary {
+  cursor: pointer !important;
+}
+
+/* Disabled interactive elements take precedence over pointer. */
+.animal-cursor [disabled],
+.animal-cursor [disabled] *,
+.animal-cursor [aria-disabled='true'],
+.animal-cursor [aria-disabled='true'] * {
+  cursor: not-allowed !important;
+}
