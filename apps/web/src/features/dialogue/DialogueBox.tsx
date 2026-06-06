@@ -29,7 +29,12 @@ export function DialogueBox({ open, text, onTypeEnd, children, onClose }: Props)
   return (
     <Modal open={open} onClose={onClose} typewriter={false} footer={null}>
       <div className="whitespace-pre-wrap">
-        <Typewriter speed={30} trigger={text} onDone={onTypeEnd}>
+        {/* key on Typewriter forces a clean remount when the dialogue text
+            changes (e.g. advancing to the next dialogue). Relying solely on
+            the library's `trigger` prop has a race where the previous
+            dialogue's revealed-char count can briefly satisfy the onDone
+            condition for the new (shorter) text, or skip the animation. */}
+        <Typewriter key={text} speed={30} onDone={onTypeEnd}>
           {plain}
         </Typewriter>
       </div>
