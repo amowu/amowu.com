@@ -1,13 +1,12 @@
-import { Card } from 'animal-island-ui'
 import type { Education } from '@amowu/shared'
 
 export function EducationSection({ education }: { education: Education[] }) {
   return (
-    <Card color="app-yellow">
+    <section>
       <h2 className="text-xl font-bold mb-3">Education</h2>
       <ul className="space-y-3">
         {education.map((e, i) => (
-          <li key={i} className="border-l-2 border-amber-400 pl-3">
+          <li key={i} className="border-l-2 border-gray-300 pl-3">
             <div className="font-semibold">
               {e.studyType ? `${e.studyType} of ` : ''}{e.area}
             </div>
@@ -22,6 +21,6 @@ export function EducationSection({ education }: { education: Education[] }) {
           </li>
         ))}
       </ul>
-    </Card>
+    </section>
   )
 }

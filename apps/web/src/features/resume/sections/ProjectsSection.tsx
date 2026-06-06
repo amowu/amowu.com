@@ -1,21 +1,20 @@
-import { Card } from 'animal-island-ui'
 import type { Project } from '@amowu/shared'
 
 export function ProjectsSection({ projects }: { projects: Project[] }) {
   return (
-    <Card color="app-yellow">
+    <section>
       <h2 className="text-xl font-bold mb-3">Projects</h2>
       <ul className="space-y-3">
         {projects.map((p, i) => (
-          <li key={i} className="border-l-2 border-amber-400 pl-3">
+          <li key={i} className="border-l-2 border-gray-300 pl-3">
             <div className="font-semibold">
-              {p.url ? <a href={p.url}>{p.name}</a> : p.name}
+              {p.url ? <a className="resume-link" href={p.url}>{p.name}</a> : p.name}
             </div>
             {p.description && <p className="text-sm">{p.description}</p>}
             {p.keywords.length > 0 && (
               <div className="mt-1 flex flex-wrap gap-1">
                 {p.keywords.map((k) => (
-                  <span key={k} className="px-1.5 py-0.5 bg-amber-100 rounded text-xs">{k}</span>
+                  <span key={k} className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">{k}</span>
                 ))}
               </div>
             )}
@@ -27,6 +26,6 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
           </li>
         ))}
       </ul>
-    </Card>
+    </section>
   )
 }

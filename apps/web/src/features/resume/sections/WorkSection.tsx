@@ -1,13 +1,12 @@
-import { Card } from 'animal-island-ui'
 import type { Work } from '@amowu/shared'
 
 export function WorkSection({ work }: { work: Work[] }) {
   return (
-    <Card color="app-blue">
+    <section>
       <h2 className="text-xl font-bold mb-3">Work</h2>
       <ul className="space-y-4">
         {work.map((w, i) => (
-          <li key={i} className="border-l-2 border-blue-400 pl-3">
+          <li key={i} className="border-l-2 border-gray-300 pl-3">
             <div className="font-semibold">{w.position} @ {w.name}</div>
             <div className="text-xs text-gray-600">
               {w.startDate}{w.endDate ? ` – ${w.endDate}` : ' – present'}
@@ -22,6 +21,6 @@ export function WorkSection({ work }: { work: Work[] }) {
           </li>
         ))}
       </ul>
-    </Card>
+    </section>
   )
 }

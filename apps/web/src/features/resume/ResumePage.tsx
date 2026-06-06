@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from '@tanstack/react-router'
+import { Card } from 'animal-island-ui'
 import { useResume } from './useResume'
 import { BasicsSection } from './sections/BasicsSection'
 import { WorkSection } from './sections/WorkSection'
@@ -27,20 +28,51 @@ export function ResumePage() {
   if (!resume) return null
 
   return (
-    <div className="m-8 max-w-2xl space-y-4 overflow-y-auto max-h-screen relative">
-      <button
-        onClick={close}
-        aria-label="Close resume"
-        title="關閉 (ESC)"
-        className="sticky top-0 ml-auto block w-9 h-9 rounded-full bg-white/90 shadow text-gray-700 hover:bg-white hover:text-red-600 text-xl leading-none z-10"
-      >
-        ×
-      </button>
-      <BasicsSection basics={resume.basics} />
-      {resume.work.length > 0 && <WorkSection work={resume.work} />}
-      {resume.education.length > 0 && <EducationSection education={resume.education} />}
-      {resume.skills.length > 0 && <SkillsSection skills={resume.skills} />}
-      {resume.projects.length > 0 && <ProjectsSection projects={resume.projects} />}
+    // Full-screen dimmed backdrop, click outside to close
+    <div
+      onClick={close}
+      className="fixed inset-0 bg-black/40 flex items-start justify-center p-8 overflow-y-auto"
+    >
+      {/* Card wrapper — stop click from bubbling so clicking inside doesn't close */}
+      <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-2xl">
+        <button
+          onClick={close}
+          aria-label="Close resume"
+          title="關閉 (ESC)"
+          className="absolute -top-3 -right-3 z-10 w-9 h-9 rounded-full bg-white shadow-md text-gray-700 hover:text-red-600 text-xl leading-none"
+        >
+          ×
+        </button>
+        <Card color="default">
+          <div className="space-y-6">
+            <BasicsSection basics={resume.basics} />
+            {resume.work.length > 0 && (
+              <>
+                <hr className="border-gray-200" />
+                <WorkSection work={resume.work} />
+              </>
+            )}
+            {resume.education.length > 0 && (
+              <>
+                <hr className="border-gray-200" />
+                <EducationSection education={resume.education} />
+              </>
+            )}
+            {resume.skills.length > 0 && (
+              <>
+                <hr className="border-gray-200" />
+                <SkillsSection skills={resume.skills} />
+              </>
+            )}
+            {resume.projects.length > 0 && (
+              <>
+                <hr className="border-gray-200" />
+                <ProjectsSection projects={resume.projects} />
+              </>
+            )}
+          </div>
+        </Card>
+      </div>
     </div>
   )
 }

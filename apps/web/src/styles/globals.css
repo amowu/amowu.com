@@ -31,6 +31,16 @@ input,
   margin-bottom: 5vh;
 }
 
+/* Restore link styling inside the resume — Tailwind preflight strips
+   default anchor colors/underlines. */
+.resume-link {
+  color: #0369a1; /* sky-700 */
+  text-decoration: underline;
+}
+.resume-link:hover {
+  color: #075985; /* sky-800 */
+}
+
 html,
 body,
 #root {
