@@ -28,3 +28,6 @@ dynamodb-data/
 
 # TypeScript incremental build cache
 **/*.tsbuildinfo
+
+# Playwright MCP scratch output (browser snapshots, console logs, screenshots)
+.playwright-mcp/
