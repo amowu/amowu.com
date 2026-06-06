@@ -1,0 +1,84 @@
+/* animal-island-ui bundles Nunito + Zen Maru Gothic + Noto Sans SC */
+@import 'animal-island-ui/style';
+/* Add only Noto Sans TC (Traditional Chinese) ourselves */
+@import '@fontsource/noto-sans-tc/400.css';
+@import '@fontsource/noto-sans-tc/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Override animal-island-ui's CSS variable so all its components
+   pick Noto Sans TC for CJK instead of SC.
+   The library declares this var with !important, so we must too. */
+:root {
+  --animal-font-family: 'Nunito', 'Noto Sans TC', 'Zen Maru Gothic', -apple-system, 'PingFang SC', 'Hiragino Sans TC', 'Microsoft YaHei', sans-serif !important;
+}
+
+body,
+button,
+input,
+.ai-modal,
+.ai-card {
+  font-family: 'Nunito', 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
+}
+
+/* Anchor the dialogue Modal to the bottom of the viewport (RPG-style)
+   instead of the library's default center. The parent .animal-mask is
+   flex center; we override align-self on this single instance. */
+.dialogue-modal {
+  align-self: flex-end;
+  margin-bottom: 5vh;
+}
+
+/* Restore link styling inside the resume — Tailwind preflight strips
+   default anchor colors/underlines. */
+.resume-link {
+  color: #0369a1; /* sky-700 */
+  text-decoration: underline;
+}
+.resume-link:hover {
+  color: #075985; /* sky-800 */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* animal-island-ui's <Modal> hard-wraps its content in <Cursor forceAll>,
+   forcing a game-style finger cursor over the whole dialogue. Modal exposes
+   no prop to turn it off, so neutralize the custom cursor here and restore
+   the OS defaults: plain arrow for content, pointer for interactive elements.
+   Selectors come after the @import, so !important + source order/specificity win. */
+.animal-cursor,
+.animal-cursor--force,
+.animal-cursor--force *,
+.animal-cursor.animal-cursor--scoped {
+  cursor: auto !important;
+}
+
+/* System pointer on interactive elements (and their inner nodes). Specificity
+   (0,1,1)+ beats the .animal-cursor--force * reset above (0,1,0). */
+.animal-cursor a[href],
+.animal-cursor a[href] *,
+.animal-cursor button,
+.animal-cursor button *,
+.animal-cursor [role='button'],
+.animal-cursor [role='button'] *,
+.animal-cursor [role='link'],
+.animal-cursor label[for],
+.animal-cursor select,
+.animal-cursor summary {
+  cursor: pointer !important;
+}
+
+/* Disabled interactive elements take precedence over pointer. */
+.animal-cursor [disabled],
+.animal-cursor [disabled] *,
+.animal-cursor [aria-disabled='true'],
+.animal-cursor [aria-disabled='true'] * {
+  cursor: not-allowed !important;
+}

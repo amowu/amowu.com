@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/.git
+**/cdk.out
+**/.next
+**/coverage
+**/.DS_Store
+infra/cdk.out
+apps/web/dist
+apps/api/dist

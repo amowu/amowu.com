@@ -29,6 +29,6 @@ ESLint uses `eslint-config-standard` with `babel-eslint`. `Phaser` is a global. 
 
 ## Workflow
 
-- **Gitflow**: `develop` is the integration branch, `master` is production. Branch features off `develop` as `feature/*`. Production fixes go on `hotfix/x.y.z` off `master`, then merge back to both `master` and `develop`.
+- **Gitflow**: `develop` is the integration branch, `main` is production. Branch features off `develop` as `feature/*`. Production fixes go on `hotfix/x.y.z` off `main`, then merge back to both `main` and `develop`.
 - **Run `npm run lint` before any commit.** Fix lint issues rather than suppressing them.
-- **Never run `npm run deploy:staging` or `npm run deploy:production`.** Deploys are CI-driven on CircleCI: push to `develop` deploys staging, push to `master` deploys production. CircleCI provides `AWS_PROFILE`, `AWS_REGION`, `BUCKET_NAME`, `CLOUDFRONT_DIST_ID`.
+- **Never run `npm run deploy:staging` or `npm run deploy:production`.** Deploys are CI-driven on CircleCI: push to `develop` deploys staging, push to `main` deploys production. CircleCI provides `AWS_PROFILE`, `AWS_REGION`, `BUCKET_NAME`, `CLOUDFRONT_DIST_ID`.

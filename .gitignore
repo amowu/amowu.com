@@ -6,3 +6,28 @@ test/unit/coverage
 **/admin.env
 npm-debug.log
 selenium-debug.log
+
+# Monorepo build outputs
+apps/*/dist/
+apps/*/.next/
+packages/*/dist/
+infra/cdk.out/
+
+# DynamoDB local data
+dynamodb-data/
+
+# IDE
+.vscode/
+.idea/
+
+# Vite
+**/.vite/
+
+# TanStack Router (auto-generated)
+**/routeTree.gen.ts
+
+# TypeScript incremental build cache
+**/*.tsbuildinfo
+
+# Playwright MCP scratch output (browser snapshots, console logs, screenshots)
+.playwright-mcp/
