@@ -23,6 +23,14 @@ input,
   font-family: 'Nunito', 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
 }
 
+/* Anchor the dialogue Modal to the bottom of the viewport (RPG-style)
+   instead of the library's default center. The parent .animal-mask is
+   flex center; we override align-self on this single instance. */
+.dialogue-modal {
+  align-self: flex-end;
+  margin-bottom: 5vh;
+}
+
 html,
 body,
 #root {

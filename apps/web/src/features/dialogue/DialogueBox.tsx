@@ -27,7 +27,13 @@ function stripHtml(html: string): string {
 export function DialogueBox({ open, text, onTypeEnd, children, onClose }: Props) {
   const plain = stripHtml(text)
   return (
-    <Modal open={open} onClose={onClose} typewriter={false} footer={null}>
+    <Modal
+      open={open}
+      onClose={onClose}
+      typewriter={false}
+      footer={null}
+      className="dialogue-modal"
+    >
       <div className="whitespace-pre-wrap">
         {/* key on Typewriter forces a clean remount when the dialogue text
             changes (e.g. advancing to the next dialogue). Relying solely on
